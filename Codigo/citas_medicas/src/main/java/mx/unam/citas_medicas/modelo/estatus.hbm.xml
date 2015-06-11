@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="mx.unam.citas_medicas.modelo.Estatus" table="estatus" catalog="citas_medicas">
+        <id name="idEst" type="java.lang.Integer">
+            <column name="id_est" />
+            <generator class="native"></generator>
+        </id>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" />
+        </property>
+        <set name="citas" inverse="true">
+            <key>
+                <column name="id_est" />
+            </key>
+            <one-to-many class="Cita" />
+        </set>
+    </class>
+</hibernate-mapping>

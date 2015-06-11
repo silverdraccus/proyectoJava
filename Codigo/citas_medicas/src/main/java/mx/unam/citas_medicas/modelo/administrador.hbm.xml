@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Administrador" table="administrador" catalog="citas_medicas">
+        <id name="rfc" type="java.lang.String">
+            <column name="rfc" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuario" class="mx.unam.citas_medicas.modelo.Usuario" fetch="select">
+            <column name="id_us" />
+        </many-to-one>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" />
+        </property>
+    </class>
+
+</hibernate-mapping>
