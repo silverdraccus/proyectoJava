@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="mx.unam.citas_medicas.modelo.Doctor" table="doctor" catalog="citas_medicas">
+        <id name="rfc" type="java.lang.String">
+            <column name="rfc" length="25" />
+            <generator class="assigned"></generator>
+        </id>
+        <many-to-one name="turno" class="Turno" fetch="select">
+            <column name="turno" />
+        </many-to-one>
+        <many-to-one name="consultorio" class="Consultorio" fetch="select">
+            <column name="consultorio" />
+        </many-to-one>
+        <many-to-one name="usuario" class="Usuario" fetch="select">
+            <column name="id_us" />
+        </many-to-one>
+        <many-to-one name="especialidad" class="Especialidad" fetch="select">
+            <column name="especialidad" />
+        </many-to-one>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" />
+        </property>
+        <set name="citas" inverse="true">
+            <key>
+                <column name="rfc" length="25" />
+            </key>
+            <one-to-many class="Cita" />
+        </set>
+</hibernate-mapping>

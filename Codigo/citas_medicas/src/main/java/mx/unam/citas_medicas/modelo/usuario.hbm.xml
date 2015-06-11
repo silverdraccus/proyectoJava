@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="mx.unam.citas_medicas.modelo.Usuario" table="usuario"catalog="citas_medicas">
+        <id name="idUs" type="java.lang.Integer">
+            <column name="id_us" />
+            <generator class="native"></generator>
+        </id>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" unique="true" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" />
+        </property>
+        <set name="doctors" inverse="true">
+            <key>
+                <column name="id_us" />
+            </key>
+            <one-to-many class="Doctor" />
+        </set>
+        <set name="administradors" inverse="true">
+            <key>
+                <column name="id_us" />
+            </key>
+            <one-to-many class="Administrador" />
+        </set>
+        <set name="pacientes" inverse="true">
+            <key>
+                <column name="id_us" />
+            </key>
+            <one-to-many class="Paciente" />
+        </set>
+    </class>
+</hibernate-mapping>

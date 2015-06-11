@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/citas_medicas</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+    <property name="show_sql">true</property>
+    <mapping resource="mx/unam/citas_medicas/modelo/Paciente.hbm.xml"/>
+    <mapping resource="mx/unam/citas_medicas/modelo/Turno.hbm.xml"/>
+    <mapping resource="mx/unam/citas_medicas/modelo/Estatus.hbm.xml"/>
+    <mapping resource="mx/unam/citas_medicas/modelo/Especialidad.hbm.xml"/>
+    <mapping resource="mx/unam/citas_medicas/modelo/Consultorio.hbm.xml"/>
+    <mapping resource="mx/unam/citas_medicas/modelo/Usuario.hbm.xml"/>
+    <mapping resource="mx/unam/citas_medicas/modelo/Doctor.hbm.xml"/>
+    <mapping resource="mx/unam/citas_medicas/modelo/Cita.hbm.xml"/>
+    <mapping resource="mx/unam/citas_medicas/modelo/Administrador.hbm.xml"/>
+    <mapping resource="../java/mx/unam/citas_medicas/modelo/administrador.hbm.xml"/>
+    <mapping resource="../java/mx/unam/citas_medicas/modelo/hibernate.hbm.xml"/>
+    <mapping resource="../java/mx/unam/citas_medicas/modelo/cita.hbm.xml"/>
+    <mapping resource="../java/mx/unam/citas_medicas/modelo/doctor.hbm.xml"/>
+    <mapping resource="../java/mx/unam/citas_medicas/modelo/especialidad.hbm.xml"/>
+    <mapping resource="../java/mx/unam/citas_medicas/modelo/estatus.hbm.xml"/>
+    <mapping resource="../java/mx/unam/citas_medicas/modelo/paciente.hbm.xml"/>
+    <mapping resource="../java/mx/unam/citas_medicas/modelo/turno.hbm.xml"/>
+    <mapping resource="../java/mx/unam/citas_medicas/modelo/usuario.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="mx.unam.citas_medicas.modelo.Paciente" table="paciente" catalog="citas_medicas">
+        <id name="noCuenta" type="java.lang.Integer">
+            <column name="noCuenta" />
+            <generator class="assigned"></generator>
+        </id>
+        <many-to-one name="usuario" class="Usuario" fetch="select">
+            <column name="id_us" />
+        </many-to-one>
+        <property name="nombre" type="java.lang.String">
+            <column name="nombre" />
+        </property>
+        <property name="carrera" type="java.lang.String">
+            <column name="carrera" />
+        </property>
+        <property name="fechaNacimiento" type="java.util.Date">
+            <column name="fechaNacimiento" length="10" />
+        </property>
+        <property name="semestreVigente" type="java.lang.Integer">
+            <column name="semestreVigente" />
+        </property>
+        <property name="dirCalle" type="java.lang.String">
+            <column name="dirCalle" />
+        </property>
+        <property name="dirNumero" type="java.lang.Integer">
+            <column name="dirNumero" />
+        </property>
+        <property name="dirColonia" type="java.lang.Integer">
+            <column name="dirColonia" />
+        </property>
+        <property name="telefono" type="java.lang.String">
+            <column name="telefono" />
+        </property>
+        <property name="correoE" type="java.lang.String">
+            <column name="correoE" />
+        </property>
+        <set name="citas" inverse="true">
+            <key>
+                <column name="noCuenta" />
+            </key>
+            <one-to-many class="Cita" />
+        </set>
+    </class>
+</hibernate-mapping>
