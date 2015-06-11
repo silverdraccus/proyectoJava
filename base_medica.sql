@@ -1,36 +1,70 @@
 create database if not exists citas_medicas;
 use citas_medicas;
-create table medico(
-m_cedula varchar(30) primary key,
-m_nombre varchar(255),
-m_consultorio int
+
+create table Usuario(
+id_us integer(10) primary key,
+nombre char(255),
+password char(255)
 );
 
-create table paciente(
-p_num_paciente int primary key,
-p_nombre varchar(255),
-p_fecha_nac date,
-p_email varchar(255),
-p_direccion varchar(255),
-p_telefono varchar(30)
+create table Administrador(
+rfc char(255) primary key,
+nombre varchar(255),
+id_us integer(10),
+constraint usuario_administrador_fk
+foreign key (id_us) references Usuario(id_us)
+);
+
+create table Paciente(
+noCuenta integer(10) primary key,
+nombre varchar(255),
+carrera varchar(255),
+fechaNacimiento date,
+semestreVigente integer(10),
+dirCalle varchar(255),
+dirNumero integer(10),
+dirColonia integer(10),
+telefono varchar(255),
+correoE varchar(255),
+id_us integer(10),
+foreign key (id_us) references Usuario(id_us)
+);
+
+create table Consultorio(consultorio int(10) primary key);
+create table Turno(turno varchar(255) primary key);
+create table Especialidad(especialidad varchar(255) primary key);
+
+create table Doctor(
+rfc varchar(25) primary key,
+nombre varchar(255),
+especialidad varchar(255),
+turno varchar(255),
+consultorio integer(10),
+id_us integer(10),
+foreign key (especialidad) references Especialidad(especialidad),
+foreign key (turno) references Turno(turno),
+foreign key (consultorio)references Consultorio(consultorio),
+foreign key (id_us) references Usuario(id_us)
+);
+
+create table Estatus(
+id_est integer(10) primary key,
+descripcion char(255)
 );
 
 create table cita(
-m_cedula varchar(30) primary key,
-p_num_paciente int,
-c_fecha date,
-foreign key (m_cedula) references medico(m_cedula),
-foreign key (p_num_paciente) references paciente(p_num_paciente)
-);
-
-use citas_medicas;
-drop table usuarios;
-create table usuario(
-usuario varchar(15) primary key,
-contraseña varchar(40) -- firma sha1
+id_cit integer(10) primary key,
+fecha date,
+hora time,
+id_est integer(10) ,
+rfc varchar(255), 
+noCuenta integer(10),
+foreign key (id_est) references Estatus(id_est),
+foreign key (rfc) references Doctor(rfc),
+foreign key (noCuenta) references Paciente(noCuenta)
 
 );
 
-insert into usuario values ('medico1',sha1('medico1')),('medico2',sha1('medico2'));
+insert into Estatus values (1,'activa'),(2,'terminada'),(3,'cancelada');
 
-select * from usuario;
+
