@@ -32,10 +32,11 @@ id_us integer(10),
                 <th>dirCalle</th>
                 <th>dirNumero</th>
                 <th>dirColonia</th>
+                <th>tel&eacute;fono</th>
+                <th>correo electr&oacute;nico</th>
                 <th>telefono</th>
-                <th>correE</th>
-                <th>telefono</th>
-                <th>editar nombre de usuario o contraseña</th>
+                <th>cambiar nombre de usuario</th>
+                <th>cambiar contraseña</th>
             </tr>
             <c:forEach var="paciente" items="{paciente}">
                 <tr>
@@ -44,16 +45,20 @@ id_us integer(10),
                     <td>${paciente.fechaNacimiento}</td>
                     <td>${paciente.semestreVigente}</td>
                     <td>${paciente.dirCalle}</td>
+                    <td>${paciente.dirNumero}</td>
+                    <td>${paciente.dirColonia}</td>
+                    <td>${paciente.telefono}</td>
+                    <td>${paciente.correoE}</td>                   
                     <td>
-                        <a href="${pageContext.request.contextPath}/eliminaCitasPaciente?id_cit=${cita.id_cit}">
-							eliminar cita
+                        <a href="${pageContext.request.contextPath}/cambiarusuario?noCuenta=${paciente.noCuenta}">
+							Cambiar usuario
                         </a>                       
                     </td>                                       
                     <td>
-                        <a href="${pageContext.request.contextPath}/cancelarCitasPaciente?id_cit=${cita.id_cit}">
-							cancelar cita						
-                        </a>            
-                    </td>
+                        <a href="${pageContext.request.contextPath}/cambiarContrasena?noCuenta=${paciente.noCuenta}">
+							Cambiar usuario
+                        </a>                       
+                    </td>  
 
                 </tr>
             </c:forEach>
