@@ -30,7 +30,7 @@
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:hibernate.cfg.xml" />
-        <property name="packagesToScan" value="mx.unam.ctas_medicas.model" />
+        <property name="packagesToScan" value="mx.unam.citas_medicas.model" />
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -48,6 +48,8 @@
     <context:component-scan base-package="mx.unam.citas_medicas.controller" />
     
     <!-- *********************************** BEANS ********************************************** -->
+
+
 
     <bean id="usuarioDAOImpl" class="mx.unam.citas_medicas.dao.impl.UsuarioDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />
