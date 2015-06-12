@@ -4,6 +4,8 @@ import java.util.List;
 import mx.unam.citas_medicas.dao.UsuarioDAO;
 import mx.unam.citas_medicas.modelo.Usuario;
 import mx.unam.citas_medicas.service.UsuarioService;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
-    
+    @Autowired
+    private SessionFactory sessionFactory;
     private UsuarioDAO usuarioDAO;
     public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
         this.usuarioDAO = usuarioDAO;
+    }
+    
+    public void setSessionFactory(SessionFactory sf){
+        this.sessionFactory = sf;
     }
     @Override
     @Transactional
