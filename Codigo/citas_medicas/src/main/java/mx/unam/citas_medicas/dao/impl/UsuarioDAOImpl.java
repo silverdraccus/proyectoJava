@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import mx.unam.citas_medicas.modelo.Usuario;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * @author Ariadna
@@ -18,6 +20,7 @@ import org.hibernate.Query;
 @Repository
 public class UsuarioDAOImpl implements UsuarioDAO{
     private static final Logger logger = LoggerFactory.getLogger(UsuarioDAOImpl.class);
+    @Autowired
     private SessionFactory sessionFactory;
     public static final String NOMBRE = "nombre";
     public static final String PASSWORD = "password";
@@ -26,9 +29,10 @@ public class UsuarioDAOImpl implements UsuarioDAO{
         this.sessionFactory = sf;
     }
 
+    @Transactional
     @Override
     public void save(Usuario transientInstance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         logger.debug("saving Usuario instance");
         try {
             session.save(transientInstance);
@@ -37,11 +41,13 @@ public class UsuarioDAOImpl implements UsuarioDAO{
             logger.error("save failed", re);
             throw re;
         }
+        session.disconnect();
     }
     
+    @Transactional
     @Override
     public void delete(Usuario persistentInstance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         logger.debug("deleting Usuario instance");
         try {
             session.delete(persistentInstance);
@@ -50,14 +56,18 @@ public class UsuarioDAOImpl implements UsuarioDAO{
             logger.error("delete failed", re);
             throw re;
         }
+        session.disconnect();
     }
-  
+    
+    @Transactional
     @Override
     public Usuario findById( java.lang.Integer id) {
-        Session session = this.sessionFactory.getCurrentSession();
+        
         logger.debug("getting Usuario instance with id: " + id);
         try {
+            Session session = sessionFactory.openSession();
             Usuario instance = (Usuario)session.get("Usuario", id);
+            session.close();
             return instance;
         } catch (RuntimeException re) {
             logger.error("get failed", re);
@@ -65,31 +75,39 @@ public class UsuarioDAOImpl implements UsuarioDAO{
         }
     }
     
+    @Transactional
     @Override
-    public List findByExample(Usuario instance) {
-        Session session = this.sessionFactory.getCurrentSession();
+    public List findByExample(Usuario instance) { 
         logger.debug("finding Usuario instance by example");
         try {
+            Session session = sessionFactory.openSession();
+            Transaction trans=session.beginTransaction();
             List results = session .createCriteria("Usuario")
                     .add(Example.create(instance))
                     .list();
             logger.debug("find by example successful, result size: " + results.size());
+            trans.commit();
+            session.disconnect();
             return results;
         } catch (RuntimeException re) {
             logger.error("find by example failed", re);
             throw re;
         }
-    }    
+        
+    }  
     
+    @Transactional
     @Override
     public List findByProperty(String propertyName, Object value) {
-        Session session = this.sessionFactory.getCurrentSession();
+        
         logger.debug("finding Usuario instance with property: " + propertyName+ ", value: " + value);
         try {
+            Session session = sessionFactory.openSession();
             String queryString = "from Usuario as model where model."+ propertyName + "= ?";
             Query queryObject = session.createQuery(queryString);
             queryObject.setParameter(0, value);
-            return queryObject.list();
+            session.close();
+            return queryObject.list(); 
         } catch (RuntimeException re) {
          logger.error("find by property name failed", re);
          throw re;
@@ -98,36 +116,38 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     
     @Override
     public List findByNombre(Object nombre) {
-        Session session = this.sessionFactory.getCurrentSession();
         return findByProperty(NOMBRE, nombre );
     }
-	
+    
     @Override
     public List findByPassword(Object password) {
-        Session session = this.sessionFactory.getCurrentSession();
         return findByProperty(PASSWORD, password);
     }
-	
+    
+    @Transactional
     @Override
     public List findAll() {
-        Session session = this.sessionFactory.getCurrentSession();
         logger.debug("finding all Usuario instances");
         try {
+            Session session = sessionFactory.openSession();
             String queryString = "from Usuario";
             Query queryObject = session.createQuery(queryString);
+            session.disconnect();
             return queryObject.list();
         } catch (RuntimeException re) {
             logger.error("find all failed", re);
             throw re;
         }
     }
-	
+
+    @Transactional
     @Override
-    public Usuario merge(Usuario detachedInstance) {
-        Session session = this.sessionFactory.getCurrentSession();
+    public Usuario merge(Usuario detachedInstance) {  
         logger.debug("merging Usuario instance");
         try {
+            Session session = sessionFactory.openSession();
             Usuario result = (Usuario) session.merge(detachedInstance);
+            session.disconnect();
             logger.debug("merge successful");
             return result;
         } catch (RuntimeException re) {
@@ -136,22 +156,27 @@ public class UsuarioDAOImpl implements UsuarioDAO{
         }
     }
 
+    @Transactional
     @Override
     public void attachDirty(Usuario instance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         logger.debug("attaching dirty Usuario instance");
         try {
+            Transaction trans=session.beginTransaction();
             session.saveOrUpdate(instance);
+            trans.commit();
             logger.debug("attach successful");
         } catch (RuntimeException re) {
             logger.error("attach failed", re);
             throw re;
         }
+        session.disconnect();
     }
     
+    @Transactional
     @Override
     public void attachClean(Usuario instance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         logger.debug("attaching clean Usuario instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);
@@ -160,5 +185,6 @@ public class UsuarioDAOImpl implements UsuarioDAO{
             logger.error("attach failed", re);
             throw re;
         }
+        session.disconnect();
     }
 }

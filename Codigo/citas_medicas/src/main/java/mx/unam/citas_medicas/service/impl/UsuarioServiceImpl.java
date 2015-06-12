@@ -21,37 +21,37 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     @Transactional
     public void agregarUsuario(Usuario u) {
-        this.usuarioDAO.agregarUsuario(u);
+        this.usuarioDAO.save(u);
     }
 
     @Override
     @Transactional
     public void actualizarUsuario(Usuario u) {
-        this.usuarioDAO.actualizarUsuario(u);
+        this.usuarioDAO.merge(u);
     }
 
     @Override
     @Transactional
     public void borrarUsuario(int id) {
-         this.usuarioDAO.borrarUsuario(id);
+         this.usuarioDAO.delete(getUsuarioById(id));
     }
 
     @Override
     @Transactional
     public List<Usuario> listaUsuarios() {
-        return this.usuarioDAO.listaUsuarios();
+        return this.usuarioDAO.findAll();
     }
 
     @Override
     @Transactional
     public Usuario getUsuarioById(int id) {
-        return this.usuarioDAO.getUsuarioById(id);
+        return this.usuarioDAO.findById(id);
     }
 
     @Override
     @Transactional
     public Usuario getUsuarioByNombre(String nombre) {
-        return  this.usuarioDAO.getUsuarioByNombre(nombre);
+        return  (Usuario) this.usuarioDAO.findByNombre(nombre);
     }
     
 }

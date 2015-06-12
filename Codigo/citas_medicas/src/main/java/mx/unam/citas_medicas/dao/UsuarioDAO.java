@@ -6,7 +6,7 @@ import mx.unam.citas_medicas.modelo.Usuario;
  *
  * @author Ariadna
  */
-public interface UsuarioDAO {
+public interface UsuarioDAO{
 
     public void save(Usuario u);
     public void delete(Usuario u);
