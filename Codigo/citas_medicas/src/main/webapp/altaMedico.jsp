@@ -9,9 +9,36 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Alta medico</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form action="altaMedico" method="post">
+            <label>RFC</label>
+            <input type="text" name="rfc">
+            <br>
+ 
+            <label>Nombre</label>
+            <input type="text" name="nombre">
+            <br>
+ 
+            
+            <label>Especialidad</label>
+            <input type="text" name="especialidad">
+            <br>
+ 
+            
+            <label>Turno</label>
+            <input type="text" name="turno">
+            <br>
+ 
+            
+            <label>Consultorio</label>
+            <input type="text" name="consultorio">
+            <br>   
+            
+            <input type="submit" name="altaMedico" value="dar de alta">
+ 
+ 
+        </form>
     </body>
 </html>
