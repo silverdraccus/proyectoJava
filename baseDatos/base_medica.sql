@@ -3,7 +3,7 @@ use citas_medicas;
 
 create table Usuario(
 id_us integer(10) primary key,
-nombre char(255),
+nombre char(255) unique,
 password char(255)
 );
 
