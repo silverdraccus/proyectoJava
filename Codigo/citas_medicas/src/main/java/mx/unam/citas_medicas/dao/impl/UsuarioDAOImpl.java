@@ -84,7 +84,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
             Transaction trans=session.beginTransaction();
             List results = session.createCriteria(Usuario.class)
                     .add(Example.create(instance))
-                    .list();
+                    .list();   
             logger.debug("find by example successful, result size: " + results.size());
             trans.commit();
             session.disconnect();
