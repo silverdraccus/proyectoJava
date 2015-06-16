@@ -22,7 +22,7 @@
                             <h3 class="panel-title">Ingreso</h3>
                         </div>
                         <div class="panel-body">
-                            <c:url var="addAction" value="/login" ></c:url>
+                            <c:url var="addAction" value="/login.jsp" ></c:url>
                             <form:form action="${addAction}" commandName="usuario">
                             <!--form action="LoginController" method="post" role="form"-->
                                 <fieldset>

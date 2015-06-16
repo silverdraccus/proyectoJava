@@ -35,11 +35,11 @@ public class LoginController {
     }
     
     //Para loguear
-    @RequestMapping(value= "/login", method = RequestMethod.POST)
-    public String getLogin(@ModelAttribute("usuario") Usuario u){
+    @RequestMapping(value= "/login.jsp",  method=RequestMethod.POST)
+    public String getLogin(Usuario u){
         System.out.println("U: "+u);
 
             return "altaMedico";
-
+//@ModelAttribute("usuario") 
     }
 }
