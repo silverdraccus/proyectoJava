@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -21,18 +22,25 @@
                             <h3 class="panel-title">Ingreso</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="LoginController" method="post" role="form">
+                            <c:url var="addAction" value="/login" ></c:url>
+                            <form:form action="${addAction}" commandName="usuario">
+                            <!--form action="LoginController" method="post" role="form"-->
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Usuario" name="usuario" type="text" autofocus>
+                                        <form:input cssClass="form-control" path="nombre" />
+                                        <!--input class="form-control" placeholder="Usuario" 
+                                        name="usuario" type="text" autofocus-->
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                        <form:input cssClass="form-control" path="password" />
+                                        <!--input class="form-control" placeholder="Password" name="password"
+                                        type="password" value=""-->
                                     </div>
                                     <!-- Change this to a button or input when using this as a form -->
                                     <input type="submit" name="submit" value="Login" class="btn btn-lg btn-success btn-block"/>
                                 </fieldset>
-                            </form>
+                            <!--/form>-->
+                            </form:form>
                         </div>
                     </div>
                 </div>

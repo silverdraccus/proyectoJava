@@ -1,17 +1,14 @@
 package mx.unam.citas_medicas.controller;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import mx.unam.citas_medicas.modelo.Usuario;
+import mx.unam.citas_medicas.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 
 
@@ -23,14 +20,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class LoginController {
 
-     @RequestMapping(value = {"/*", "/index"})
+    UsuarioService usuarioService;
+    
+    @Autowired(required=true)
+    //@Qualifier(value="usuarioService")
+    public void setUsuarioService(UsuarioService us){
+            this.usuarioService = us;
+    }
+    
+    @RequestMapping(value = {"/*", "/index"})
     public String getIndex(Model model) {
+        model.addAttribute("usuario", new Usuario());
         return "index";
     }
     
-    @RequestMapping(method = RequestMethod.POST)
-    public String printHello(ModelMap model) {
-        System.out.println("aaaaa");
-        return "X";
+    //Para loguear
+    @RequestMapping(value= "/login", method = RequestMethod.POST)
+    public String getLogin(@ModelAttribute("usuario") Usuario u){
+        System.out.println("U: "+u);
+
+            return "altaMedico";
+
     }
 }

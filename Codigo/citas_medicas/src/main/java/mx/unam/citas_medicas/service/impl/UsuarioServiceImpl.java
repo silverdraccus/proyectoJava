@@ -17,14 +17,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class UsuarioServiceImpl implements UsuarioService{
     @Autowired
     private SessionFactory sessionFactory;
+    public void setSessionFactory(SessionFactory sf){
+        this.sessionFactory=sf;
+    }
+    
+    @Autowired
     private UsuarioDAO usuarioDAO;
     public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
         this.usuarioDAO = usuarioDAO;
     }
     
-    public void setSessionFactory(SessionFactory sf){
-        this.sessionFactory = sf;
-    }
     @Override
     @Transactional
     public void agregarUsuario(Usuario u) {
