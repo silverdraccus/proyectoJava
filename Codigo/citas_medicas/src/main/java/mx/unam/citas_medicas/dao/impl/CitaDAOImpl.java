@@ -70,7 +70,7 @@ public class CitaDAOImpl implements CitaDAO{
         log.debug("finding Cita instance by example");
         try {
             List results = session
-                    .createCriteria("Cita")
+                    .createCriteria(Cita.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());

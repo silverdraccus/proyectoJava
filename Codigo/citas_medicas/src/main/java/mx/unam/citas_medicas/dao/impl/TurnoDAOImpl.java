@@ -75,7 +75,7 @@ public class TurnoDAOImpl implements TurnoDAO{
         log.debug("finding Turno instance by example");
         try {
             List results = session
-                    .createCriteria("Turno")
+                    .createCriteria(Turno.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());

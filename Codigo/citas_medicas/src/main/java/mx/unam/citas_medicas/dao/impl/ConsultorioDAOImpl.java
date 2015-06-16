@@ -71,7 +71,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
         log.debug("finding Consultorio instance by example");
         try {
             List results = session
-                    .createCriteria("Consultorio")
+                    .createCriteria(Consultorio.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());

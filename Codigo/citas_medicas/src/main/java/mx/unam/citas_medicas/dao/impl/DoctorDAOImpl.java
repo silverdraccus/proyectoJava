@@ -75,7 +75,7 @@ public class DoctorDAOImpl implements DoctorDAO{
         log.debug("finding Doctor instance by example");
         try {
             List results = session
-                    .createCriteria("Doctor")
+                    .createCriteria(Doctor.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());

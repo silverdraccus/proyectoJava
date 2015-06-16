@@ -71,7 +71,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
         log.debug("finding Administrador instance by example");
         try {
             List results = session
-                    .createCriteria("Administrador")
+                    .createCriteria(Administrador.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());

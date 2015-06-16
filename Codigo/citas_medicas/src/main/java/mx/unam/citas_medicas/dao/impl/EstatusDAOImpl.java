@@ -73,7 +73,7 @@ public class EstatusDAOImpl implements EstatusDAO{
         log.debug("finding Estatus instance by example");
         try {
             List results = session
-                    .createCriteria("Estatus")
+                    .createCriteria(Estatus.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());

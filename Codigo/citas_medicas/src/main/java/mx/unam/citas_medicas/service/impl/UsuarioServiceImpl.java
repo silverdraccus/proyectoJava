@@ -1,5 +1,6 @@
 package mx.unam.citas_medicas.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import mx.unam.citas_medicas.dao.UsuarioDAO;
 import mx.unam.citas_medicas.modelo.Usuario;
@@ -66,6 +67,10 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     @Transactional
     public Usuario getUsuarioByNombreAndByPassword(Usuario u) {
-        return  (Usuario) this.usuarioDAO.findByExample(u);
+       List<Usuario> usuariosList =this.usuarioDAO.findByExample(u);
+       if (usuariosList.size()>0){
+           return usuariosList.iterator().next();
+       }
+       return null;
     }
 }
