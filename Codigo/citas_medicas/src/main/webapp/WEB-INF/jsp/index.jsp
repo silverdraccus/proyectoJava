@@ -41,6 +41,7 @@
                                 </fieldset>
                             <!--/form>-->
                             </form:form>
+                            <c:out value=""></c:out>
                         </div>
                     </div>
                 </div>

@@ -14,4 +14,5 @@ public interface UsuarioService {
     public List<Usuario> listaUsuarios(); 
     public Usuario getUsuarioById(int id);
     public Usuario getUsuarioByNombre(String nombre);
+    public Usuario getUsuarioByNombreAndByPassword(Usuario u);
 }

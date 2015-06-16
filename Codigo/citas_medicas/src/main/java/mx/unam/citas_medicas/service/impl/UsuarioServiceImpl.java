@@ -63,4 +63,9 @@ public class UsuarioServiceImpl implements UsuarioService{
         return  (Usuario) this.usuarioDAO.findByNombre(nombre);
     }
     
+    @Override
+    @Transactional
+    public Usuario getUsuarioByNombreAndByPassword(Usuario u) {
+        return  (Usuario) this.usuarioDAO.findByExample(u);
+    }
 }

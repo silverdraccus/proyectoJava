@@ -1,5 +1,7 @@
 package mx.unam.citas_medicas.controller;
 
+import java.net.URL;
+import java.net.URLClassLoader;
 import mx.unam.citas_medicas.modelo.Usuario;
 import mx.unam.citas_medicas.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,6 @@ public class LoginController {
     UsuarioService usuarioService;
     
     @Autowired(required=true)
-    //@Qualifier(value="usuarioService")
     public void setUsuarioService(UsuarioService us){
             this.usuarioService = us;
     }
@@ -31,15 +32,23 @@ public class LoginController {
     @RequestMapping(value = {"/*", "/index"})
     public String getIndex(Model model) {
         model.addAttribute("usuario", new Usuario());
+        ClassLoader cl = ClassLoader.getSystemClassLoader();
+ 
+        URL[] urls = ((URLClassLoader)cl).getURLs();
+ 
+        for(URL url: urls){
+        	System.out.println(url.getFile());
+        }
         return "index";
     }
     
     //Para loguear
     @RequestMapping(value= "/login.jsp",  method=RequestMethod.POST)
+    //@ModelAttribute("usuario") 
     public String getLogin(Usuario u){
+        
+        u=usuarioService.getUsuarioByNombreAndByPassword(u);
         System.out.println("U: "+u);
-
-            return "altaMedico";
-//@ModelAttribute("usuario") 
+        return "altaMedico";
     }
 }
