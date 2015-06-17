@@ -19,6 +19,6 @@
     <mapping resource="mx/unam/citas_medicas/modelo/Estatus.hbm.xml"/>
     <mapping resource="mx/unam/citas_medicas/modelo/Paciente.hbm.xml"/>
     <mapping resource="mx/unam/citas_medicas/modelo/Turno.hbm.xml"/>
-    <mapping class="Usuario.hbm" file="" jar="" package="Usuario.hbm.xml" resource="mx/unam/citas_medicas/modelo/Usuario.hbm.xml"/>
+    <mapping resource="mx/unam/citas_medicas/modelo/Usuario.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -3,15 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="<c:url value="/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" />" rel="stylesheet">
-        <link href="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.css" />" rel="stylesheet">
-        <link href="<c:url value="/resources/css/timeline.css" />" rel="stylesheet">
-        <link href="<c:url value="/resources/css/sb-admin-2.css" />" rel="stylesheet">
-        <link href="<c:url value="/resources/bower_components/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
-        <title>Servicios Medicos</title>
-    </head>
+     <jsp:include page="/headers.jsp"></jsp:include>
 
     <body>
         <div class="container">

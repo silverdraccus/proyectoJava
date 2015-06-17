@@ -48,7 +48,7 @@
         <servlet-name>spring</servlet-name>
         <url-pattern>*.jsp</url-pattern>
     </servlet-mapping>
-    
+    <!--
     <servlet>
         <description></description>
         <display-name>LoginController</display-name>
@@ -59,6 +59,15 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
-    
-
+    <servlet>
+        <description></description>
+        <display-name>HelpsController</display-name>
+        <servlet-name>HelpsController</servlet-name>
+        <servlet-class>mx.unam.citas_medicas.controller.HelpsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelpsController</servlet-name>
+        <url-pattern>/HelpsController</url-pattern>
+    </servlet-mapping>
+-->
 </web-app>

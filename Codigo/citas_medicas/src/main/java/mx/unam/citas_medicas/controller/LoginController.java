@@ -32,13 +32,6 @@ public class LoginController {
     @RequestMapping(value = {"/*", "/index"})
     public String getIndex(Model model) {
         model.addAttribute("usuario", new Usuario());
-        ClassLoader cl = ClassLoader.getSystemClassLoader();
- 
-        URL[] urls = ((URLClassLoader)cl).getURLs();
- 
-        for(URL url: urls){
-        	System.out.println(url.getFile());
-        }
         return "index";
     }
     
