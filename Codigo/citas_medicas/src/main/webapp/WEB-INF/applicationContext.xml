@@ -29,7 +29,7 @@
     <!-- Hibernate 4 SessionFactory Bean definition -->  
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <!--property name="configLocation" value="classpath:hibernate.cfg.xml" /-->
+        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
         <property name="packagesToScan" value="mx.unam.citas_medicas.modelo" />
         <property name="hibernateProperties">
             <props>
