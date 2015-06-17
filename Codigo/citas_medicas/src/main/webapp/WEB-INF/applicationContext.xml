@@ -58,4 +58,8 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
+    <bean id="usuario"    class="mx.unam.citas_medicas.modelo.Usuario" scope="session">     
+      <aop:scoped-proxy/>
+  </bean>
+
 </beans>

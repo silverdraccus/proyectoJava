@@ -8,12 +8,16 @@
     <body>
         <div class="container">
             <div class="row">
+                <c:if test="${not empty msj}">
+                            <h3>${msj}</h3>   
+                </c:if>
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Ingreso</h3>
                         </div>
                         <div class="panel-body">
+                            
                             <c:url var="addAction" value="/login.jsp" ></c:url>
                             <form:form action="${addAction}" commandName="usuario">
                             <!--form action="LoginController" method="post" role="form"-->
