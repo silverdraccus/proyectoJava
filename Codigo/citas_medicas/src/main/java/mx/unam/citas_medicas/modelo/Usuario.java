@@ -23,7 +23,10 @@ public class Usuario  implements java.io.Serializable {
 
     public Usuario() {
     }
-
+    
+    public Usuario(String nombre) {
+        this.nombre=nombre;
+    }
     public Usuario(String nombre, String password, Set doctors, Set administradors, Set pacientes) {
        this.nombre = nombre;
        this.password = password;

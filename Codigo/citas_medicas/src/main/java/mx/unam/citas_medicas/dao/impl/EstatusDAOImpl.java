@@ -29,7 +29,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     
     @Override
     public void save(Estatus transientInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("saving Estatus instance");
         try {
             session.save(transientInstance);
@@ -42,7 +42,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     
     @Override
     public void delete(Estatus persistentInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("deleting Estatus instance");
         try {
             session.delete(persistentInstance);
@@ -55,7 +55,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     
     @Override
     public Estatus findById( java.lang.Integer id) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("getting Estatus instance with id: " + id);
         try {
             Estatus instance = (Estatus) session
@@ -69,7 +69,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     
     @Override
     public List findByExample(Estatus instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Estatus instance by example");
         try {
             List results = session
@@ -86,7 +86,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     
     @Override
     public List findByProperty(String propertyName, Object value) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Estatus instance with property: " + propertyName
             + ", value: " + value);
         try {
@@ -109,7 +109,7 @@ public class EstatusDAOImpl implements EstatusDAO{
 
     @Override
 	public List findAll() {
-            Session session=sessionFactory.getCurrentSession();
+            Session session = sessionFactory.openSession();
             log.debug("finding all Estatus instances");
             try {
                     String queryString = "from Estatus";
@@ -123,7 +123,7 @@ public class EstatusDAOImpl implements EstatusDAO{
 	
     @Override
     public Estatus merge(Estatus detachedInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("merging Estatus instance");
         try {
             Estatus result = (Estatus) session
@@ -138,7 +138,7 @@ public class EstatusDAOImpl implements EstatusDAO{
 
     @Override
     public void attachDirty(Estatus instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Estatus instance");
         try {
             session.saveOrUpdate(instance);
@@ -151,7 +151,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     
     @Override
     public void attachClean(Estatus instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching clean Estatus instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);

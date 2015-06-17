@@ -25,7 +25,7 @@ public class CitaDAOImpl implements CitaDAO{
     
     @Override
      public void save(Cita transientInstance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("saving Cita instance");
         try {
             session.save(transientInstance);
@@ -38,7 +38,7 @@ public class CitaDAOImpl implements CitaDAO{
     
     @Override
     public void delete(Cita persistentInstance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("deleting Cita instance");
         try {
             session.delete(persistentInstance);
@@ -51,7 +51,7 @@ public class CitaDAOImpl implements CitaDAO{
     
     @Override
     public Cita findById( java.lang.Integer id) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("getting Cita instance with id: " + id);
         try {
             Cita instance = (Cita) session
@@ -66,7 +66,7 @@ public class CitaDAOImpl implements CitaDAO{
     
     @Override
     public List findByExample(Cita instance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Cita instance by example");
         try {
             List results = session
@@ -83,7 +83,7 @@ public class CitaDAOImpl implements CitaDAO{
     
     @Override
     public List findByProperty(String propertyName, Object value) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Cita instance with property: " + propertyName
               + ", value: " + value);
         try {
@@ -101,7 +101,7 @@ public class CitaDAOImpl implements CitaDAO{
 
     @Override
     public List findAll() {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding all Cita instances");
         try {
                 String queryString = "from Cita";
@@ -115,7 +115,7 @@ public class CitaDAOImpl implements CitaDAO{
 	
     @Override
     public Cita merge(Cita detachedInstance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("merging Cita instance");
         try {
             Cita result = (Cita) session
@@ -130,7 +130,7 @@ public class CitaDAOImpl implements CitaDAO{
 
     @Override
     public void attachDirty(Cita instance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Cita instance");
         try {
             session.saveOrUpdate(instance);
@@ -143,7 +143,7 @@ public class CitaDAOImpl implements CitaDAO{
     
     @Override
     public void attachClean(Cita instance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching clean Cita instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);

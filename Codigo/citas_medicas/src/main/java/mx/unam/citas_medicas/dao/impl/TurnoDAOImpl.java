@@ -30,7 +30,7 @@ public class TurnoDAOImpl implements TurnoDAO{
 
     @Override
     public void save(Turno transientInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("saving Turno instance");
         try {
             session.save(transientInstance);
@@ -43,7 +43,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     
     @Override
     public void delete(Turno persistentInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("deleting Turno instance");
         try {
             session.delete(persistentInstance);
@@ -56,7 +56,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     
     @Override
     public Turno findById( java.lang.String id) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("getting Turno instance with id: " + id);
         try {
             Turno instance = (Turno) session
@@ -71,7 +71,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     
     @Override
     public List findByExample(Turno instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Turno instance by example");
         try {
             List results = session
@@ -88,7 +88,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     
     @Override
     public List findByProperty(String propertyName, Object value) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Turno instance with property: " + propertyName
             + ", value: " + value);
         try {
@@ -106,7 +106,7 @@ public class TurnoDAOImpl implements TurnoDAO{
 
     @Override
     public List findAll() {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding all Turno instances");
         try {
                 String queryString = "from Turno";
@@ -120,7 +120,7 @@ public class TurnoDAOImpl implements TurnoDAO{
 	
     @Override
     public Turno merge(Turno detachedInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("merging Turno instance");
         try {
             Turno result = (Turno) session
@@ -135,7 +135,7 @@ public class TurnoDAOImpl implements TurnoDAO{
 
     @Override
     public void attachDirty(Turno instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Turno instance");
         try {
             session.saveOrUpdate(instance);
@@ -148,7 +148,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     
     @Override
     public void attachClean(Turno instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching clean Turno instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);

@@ -1,6 +1,5 @@
 package mx.unam.citas_medicas.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import mx.unam.citas_medicas.dao.UsuarioDAO;
 import mx.unam.citas_medicas.modelo.Usuario;
@@ -10,10 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author Ariadna
- */
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
     @Autowired

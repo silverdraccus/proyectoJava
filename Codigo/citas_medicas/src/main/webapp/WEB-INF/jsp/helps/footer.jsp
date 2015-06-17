@@ -1,12 +1,6 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="<c:url value="/resources/bower_components/jquery/dist/jquery.min.js" />"></script>
+<script src="<c:url value="/resources/bower_components/bootstrap/dist/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.js" />"></script>
+<script src="<c:url value="/resources/js/sb-admin-2.js" />"></script>

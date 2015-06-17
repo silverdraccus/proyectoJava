@@ -26,7 +26,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     
     @Override
     public void save(Consultorio transientInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("saving Consultorio instance");
         try {
             session.save(transientInstance);
@@ -39,7 +39,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     
     @Override
     public void delete(Consultorio persistentInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("deleting Consultorio instance");
         try {
             session.delete(persistentInstance);
@@ -52,7 +52,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     
     @Override
     public Consultorio findById( java.lang.Integer id) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("getting Consultorio instance with id: " + id);
         try {
             Consultorio instance = (Consultorio) session
@@ -67,7 +67,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     
     @Override
     public List findByExample(Consultorio instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Consultorio instance by example");
         try {
             List results = session
@@ -84,7 +84,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     
     @Override
     public List findByProperty(String propertyName, Object value) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Consultorio instance with property: " + propertyName
             + ", value: " + value);
         try {
@@ -102,7 +102,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
 
     @Override
     public List findAll() {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
             log.debug("finding all Consultorio instances");
             try {
                     String queryString = "from Consultorio";
@@ -116,7 +116,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
 	
     @Override
     public Consultorio merge(Consultorio detachedInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("merging Consultorio instance");
         try {
             Consultorio result = (Consultorio) session
@@ -131,7 +131,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
 
     @Override
     public void attachDirty(Consultorio instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Consultorio instance");
         try {
             session.saveOrUpdate(instance);
@@ -144,7 +144,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     
     @Override
     public void attachClean(Consultorio instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching clean Consultorio instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);

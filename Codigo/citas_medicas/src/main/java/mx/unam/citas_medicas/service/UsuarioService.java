@@ -2,10 +2,7 @@
 package mx.unam.citas_medicas.service;
 import java.util.List;
 import mx.unam.citas_medicas.modelo.Usuario;
-/**
- *
- * @author Ariadna
- */
+
 public interface UsuarioService {
     
     public void agregarUsuario(Usuario u);

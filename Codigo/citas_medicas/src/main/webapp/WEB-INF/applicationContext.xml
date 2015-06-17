@@ -49,17 +49,24 @@
     
     <!-- *********************************** BEANS ********************************************** -->
 
-
-
     <bean id="usuarioDAOImpl" class="mx.unam.citas_medicas.dao.impl.UsuarioDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     <bean id="usuarioService" class="mx.unam.citas_medicas.service.impl.UsuarioServiceImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+    <bean id="doctorDAOImpl" class="mx.unam.citas_medicas.dao.impl.DoctorDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="doctorService" class="mx.unam.citas_medicas.service.impl.DoctorServiceImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="administradorDAOImpl" class="mx.unam.citas_medicas.dao.impl.AdministradorDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="administradorService" class="mx.unam.citas_medicas.service.impl.AdministradorServiceImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
 
-    <bean id="usuario"    class="mx.unam.citas_medicas.modelo.Usuario" scope="session">     
-      <aop:scoped-proxy/>
-  </bean>
 
 </beans>

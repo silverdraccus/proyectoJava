@@ -3,16 +3,39 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="<c:url value="/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" />" rel="stylesheet">
-        <link href="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.css" />" rel="stylesheet">
-        <link href="<c:url value="/resources/css/timeline.css" />" rel="stylesheet">
-        <link href="<c:url value="/resources/css/sb-admin-2.css" />" rel="stylesheet">
-        <link href="<c:url value="/resources/bower_components/font-awesome/css/font-awesome.min.css" />" rel="stylesheet">
-        <title>Servicios Medicos</title>
-    </head>
+    <jsp:include page="/headers.jsp"></jsp:include>
     <body>
-        <h1>Hello World!</h1>
+        <div class="container" style="min-height: 203px;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Sistema de Citas Médicas</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <h2>Bienvenid@</h2>
+                    <c:if test="${not empty isDoctor}">
+                        doctor!
+                    </c:if>
+                    <c:if test="${not empty isAdmin}">
+                        admin!
+                    </c:if>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+            <!-- /.row -->
+          
+        </div>
+       
+        <jsp:include page="/footer.jsp"></jsp:include>
     </body>
+    
 </html>

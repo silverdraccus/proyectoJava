@@ -32,7 +32,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     
     @Override
     public void save(Doctor transientInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("saving Doctor instance");
         try {
             session.save(transientInstance);
@@ -45,7 +45,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     
     @Override
     public void delete(Doctor persistentInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("deleting Doctor instance");
         try {
             session.delete(persistentInstance);
@@ -58,7 +58,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     
     @Override
     public Doctor findById( java.lang.String id) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("getting Doctor instance with id: " + id);
         try {
             Doctor instance = (Doctor) session.get("Doctor", id);
@@ -71,7 +71,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     
     @Override
     public List findByExample(Doctor instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Doctor instance by example");
         try {
             List results = session
@@ -88,7 +88,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     
     @Override
     public List findByProperty(String propertyName, Object value) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Doctor instance with property: " + propertyName
             + ", value: " + value);
         try {
@@ -105,13 +105,13 @@ public class DoctorDAOImpl implements DoctorDAO{
 
     @Override
 	public List findByNombre(Object nombre) {
-            Session session=sessionFactory.getCurrentSession();
+            Session session = sessionFactory.openSession();
             return findByProperty(NOMBRE, nombre);
 	}
 
     @Override
     public List findAll() {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding all Doctor instances");
         try {
                 String queryString = "from Doctor";
@@ -125,7 +125,7 @@ public class DoctorDAOImpl implements DoctorDAO{
 	
     @Override
     public Doctor merge(Doctor detachedInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("merging Doctor instance");
         try {
             Doctor result = (Doctor) session
@@ -140,7 +140,7 @@ public class DoctorDAOImpl implements DoctorDAO{
 
     @Override
     public void attachDirty(Doctor instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Doctor instance");
         try {
             session.saveOrUpdate(instance);
@@ -153,7 +153,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     
     @Override
     public void attachClean(Doctor instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching clean Doctor instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);

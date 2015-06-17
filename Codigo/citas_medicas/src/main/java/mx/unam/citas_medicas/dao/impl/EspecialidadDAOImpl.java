@@ -32,7 +32,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     
     @Override
     public void save(Especialidad transientInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("saving Especialidad instance");
         try {
             session.save(transientInstance);
@@ -45,7 +45,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     
     @Override
     public void delete(Especialidad persistentInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("deleting Especialidad instance");
         try {
             session.delete(persistentInstance);
@@ -58,7 +58,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     
     @Override
     public Especialidad findById( java.lang.String id) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("getting Especialidad instance with id: " + id);
         try {
             Especialidad instance = (Especialidad) session
@@ -73,7 +73,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     
     @Override
     public List findByExample(Especialidad instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Especialidad instance by example");
         try {
             List results = session
@@ -90,7 +90,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     
     @Override
     public List findByProperty(String propertyName, Object value) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Especialidad instance with property: " + propertyName
                 + ", value: " + value);
         try {
@@ -108,7 +108,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
 
     @Override
     public List findAll() {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding all Especialidad instances");
         try {
                 String queryString = "from Especialidad";
@@ -122,7 +122,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
 	
     @Override
     public Especialidad merge(Especialidad detachedInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("merging Especialidad instance");
         try {
             Especialidad result = (Especialidad) session
@@ -137,7 +137,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
 
     @Override
     public void attachDirty(Especialidad instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Especialidad instance");
         try {
             session.saveOrUpdate(instance);
@@ -150,7 +150,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     
     @Override
     public void attachClean(Especialidad instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching clean Especialidad instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);

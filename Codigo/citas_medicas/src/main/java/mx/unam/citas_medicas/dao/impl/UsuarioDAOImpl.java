@@ -32,7 +32,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     @Transactional
     @Override
     public void save(Usuario transientInstance) {
-        Session session = sessionFactory.openSession();
+       Session session = sessionFactory.openSession();
         logger.debug("saving Usuario instance");
         try {
             session.save(transientInstance);
@@ -47,7 +47,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     @Transactional
     @Override
     public void delete(Usuario persistentInstance) {
-        Session session = sessionFactory.openSession();
+       Session session = sessionFactory.openSession();
         logger.debug("deleting Usuario instance");
         try {
             session.delete(persistentInstance);
@@ -65,7 +65,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
         
         logger.debug("getting Usuario instance with id: " + id);
         try {
-            Session session = sessionFactory.openSession();
+           Session session = sessionFactory.openSession();
             Usuario instance = (Usuario)session.get("Usuario", id);
             session.close();
             return instance;
@@ -80,7 +80,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     public List findByExample(Usuario instance) { 
         logger.debug("finding Usuario instance by example");
         try {
-            Session session = sessionFactory.openSession();
+           Session session = sessionFactory.openSession();
             Transaction trans=session.beginTransaction();
             List results = session.createCriteria(Usuario.class)
                     .add(Example.create(instance))
@@ -102,7 +102,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
         
         logger.debug("finding Usuario instance with property: " + propertyName+ ", value: " + value);
         try {
-            Session session = sessionFactory.openSession();
+           Session session = sessionFactory.openSession();
             String queryString = "from Usuario as model where model."+ propertyName + "= ?";
             Query queryObject = session.createQuery(queryString);
             queryObject.setParameter(0, value);
@@ -129,7 +129,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     public List findAll() {
         logger.debug("finding all Usuario instances");
         try {
-            Session session = sessionFactory.openSession();
+           Session session = sessionFactory.openSession();
             String queryString = "from Usuario";
             Query queryObject = session.createQuery(queryString);
             session.disconnect();
@@ -145,7 +145,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     public Usuario merge(Usuario detachedInstance) {  
         logger.debug("merging Usuario instance");
         try {
-            Session session = sessionFactory.openSession();
+           Session session = sessionFactory.openSession();
             Usuario result = (Usuario) session.merge(detachedInstance);
             session.disconnect();
             logger.debug("merge successful");
@@ -159,7 +159,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     @Transactional
     @Override
     public void attachDirty(Usuario instance) {
-        Session session = sessionFactory.openSession();
+       Session session = sessionFactory.openSession();
         logger.debug("attaching dirty Usuario instance");
         try {
             Transaction trans=session.beginTransaction();
@@ -176,7 +176,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     @Transactional
     @Override
     public void attachClean(Usuario instance) {
-        Session session = sessionFactory.openSession();
+       Session session = sessionFactory.openSession();
         logger.debug("attaching clean Usuario instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);

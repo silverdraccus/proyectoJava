@@ -3,34 +3,31 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-     <jsp:include page="/headers.jsp"></jsp:include>
-
+    <jsp:include page="/headers.jsp"></jsp:include>
     <body>
         <div class="container">
             <div class="row">
-                <c:if test="${not empty msj}">
-                            <h3>${msj}</h3>   
-                </c:if>
                 <div class="col-md-4 col-md-offset-4">
+                    <c:if test="${not empty msj}">
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            ${msj}
+                        </div>
+                    </c:if>
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Ingreso</h3>
                         </div>
                         <div class="panel-body">
-                            
                             <c:url var="addAction" value="/login.jsp" ></c:url>
                             <form:form action="${addAction}" commandName="usuario">
                             <!--form action="LoginController" method="post" role="form"-->
                                 <fieldset>
                                     <div class="form-group">
                                         <form:input cssClass="form-control" path="nombre" />
-                                        <!--input class="form-control" placeholder="Usuario" 
-                                        name="usuario" type="text" autofocus-->
                                     </div>
                                     <div class="form-group">
                                         <form:input cssClass="form-control" path="password" />
-                                        <!--input class="form-control" placeholder="Password" name="password"
-                                        type="password" value=""-->
                                     </div>
                                     <!-- Change this to a button or input when using this as a form -->
                                     <input type="submit" name="submit" value="Login" class="btn btn-lg btn-success btn-block"/>
@@ -44,9 +41,6 @@
             </div>
         </div>
         
-        <script src="<c:url value="/resources/bower_components/jquery/dist/jquery.min.js" />"></script>
-        <script src="<c:url value="/resources/bower_components/bootstrap/dist/js/bootstrap.min.js" />"></script>
-        <script src="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.js" />"></script>
-        <script src="<c:url value="/resources/js/sb-admin-2.js" />"></script>
+        <jsp:include page="/footer.jsp"></jsp:include>
     </body>
 </html>

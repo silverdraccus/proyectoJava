@@ -26,7 +26,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
 
     @Override
     public void save(Administrador transientInstance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("saving Administrador instance");
         try {
             session.save(transientInstance);
@@ -39,7 +39,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     
     @Override
 	public void delete(Administrador persistentInstance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("deleting Administrador instance");
         try {
             session.delete(persistentInstance);
@@ -52,7 +52,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     
     @Override
     public Administrador findById( java.lang.String id) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("getting Administrador instance with id: " + id);
         try {
             Administrador instance = (Administrador) session
@@ -67,7 +67,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     
     @Override
     public List findByExample(Administrador instance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Administrador instance by example");
         try {
             List results = session
@@ -84,7 +84,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     
     @Override
     public List findByProperty(String propertyName, Object value) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Administrador instance with property: " + propertyName
               + ", value: " + value);
         try {
@@ -101,14 +101,14 @@ public class AdministradorDAOImpl implements AdministradorDAO{
 
     @Override
     public List findByNombre(Object nombre) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
             return findByProperty(NOMBRE, nombre
             );
     }
 	
     @Override
     public List findAll() {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding all Administrador instances");
         try {
                 String queryString = "from Administrador";
@@ -122,7 +122,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
 	
     @Override
     public Administrador merge(Administrador detachedInstance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("merging Administrador instance");
         try {
             Administrador result = (Administrador) session
@@ -137,7 +137,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
 
     @Override
     public void attachDirty(Administrador instance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Administrador instance");
         try {
             session.saveOrUpdate(instance);
@@ -150,7 +150,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     
     @Override
     public void attachClean(Administrador instance) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching clean Administrador instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);

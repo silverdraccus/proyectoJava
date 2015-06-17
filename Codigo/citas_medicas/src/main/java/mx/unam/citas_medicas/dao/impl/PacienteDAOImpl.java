@@ -35,7 +35,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     }
     @Override
     public void save(Paciente transientInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("saving Paciente instance");
         try {
             session.save(transientInstance);
@@ -47,7 +47,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     }
     
     public void delete(Paciente persistentInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("deleting Paciente instance");
         try {
             session.delete(persistentInstance);
@@ -60,7 +60,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     
     @Override
     public Paciente findById( java.lang.Integer id) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("getting Paciente instance with id: " + id);
         try {
             Paciente instance = (Paciente) session
@@ -75,7 +75,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     
     @Override
     public List findByExample(Paciente instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Paciente instance by example");
         try {
             List results = session
@@ -92,7 +92,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     
     @Override
     public List findByProperty(String propertyName, Object value) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding Paciente instance with property: " + propertyName
               + ", value: " + value);
         try {
@@ -150,7 +150,7 @@ public class PacienteDAOImpl implements PacienteDAO{
 
     @Override
     public List findAll() {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("finding all Paciente instances");
         try {
                 String queryString = "from Paciente";
@@ -164,7 +164,7 @@ public class PacienteDAOImpl implements PacienteDAO{
 	
     @Override
     public Paciente merge(Paciente detachedInstance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("merging Paciente instance");
         try {
             Paciente result = (Paciente) session
@@ -179,7 +179,7 @@ public class PacienteDAOImpl implements PacienteDAO{
 
     @Override
     public void attachDirty(Paciente instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Paciente instance");
         try {
             session.saveOrUpdate(instance);
@@ -192,7 +192,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     
     @Override
     public void attachClean(Paciente instance) {
-        Session session=sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         log.debug("attaching clean Paciente instance");
         try {
             session.buildLockRequest(LockOptions.NONE).lock(instance);
