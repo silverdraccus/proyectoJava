@@ -64,6 +64,12 @@ public class LoginController {
         }
     }
     
+    //Para salir
+    @RequestMapping(value= "/logout.jsp")
+    public String getLogout(Model model){
+        model.addAttribute("usuario",new Usuario());
+        return "index";
+    }
     
     public boolean isDoctor(Usuario u,DoctorService ds){
         Doctor d=ds.getDoctorByUsuario(u);

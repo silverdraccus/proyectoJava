@@ -5,7 +5,8 @@
 <html>
     <jsp:include page="/headers.jsp"></jsp:include>
     <body>
-        <div class="container" style="min-height: 203px;">
+        <jsp:include page="/menu.jsp"></jsp:include>
+        <div id="page-wrapper" style="min-height: 203px;">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Sistema de Citas Médicas</h1>
@@ -17,11 +18,23 @@
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
                     <h2>Bienvenid@</h2>
-                    <c:if test="${not empty isDoctor}">
-                        doctor!
-                    </c:if>
                     <c:if test="${not empty isAdmin}">
                         admin!
+                        *ABC Pacientes
+                        *ABC Doctores
+                        *Cerrar session
+                    </c:if>
+                    <c:if test="${not empty isDoctor}">
+                        doctor!
+                        Consultar citas
+                        Cancelar citas
+                        *Cerrar session
+                    </c:if>
+                    <c:if test="${empty isDoctor and empty isAdmin}">
+                        Paciente!
+                        ABC Citas
+                        Cambiar datos de contacto
+                        *Cerrar session
                     </c:if>
                     <div class="panel panel-default">
                         <div class="panel-body">

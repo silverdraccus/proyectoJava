@@ -14,4 +14,9 @@ public class HelpsController {
     public String getFooter(Model model) {
         return "/helps/footer";
     }
+    
+    @RequestMapping(value ="/menu")
+    public String getMenu(Model model) {
+        return "/helps/menu";
+    }
 }
