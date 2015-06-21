@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,33 +13,35 @@
         <title>Alta medico</title>
     </head>
     <body>
-        <form action="altaMedico" method="post">
+        <c:url var="addAction" value="/altaMedico.jsp" ></c:url>
+        <form:form action="${addAction}" commandName="doctor">
+            <fieldset>
             <label>RFC</label>
-            <input type="text" name="rfc">
+            <form:input path="rfc"/>
             <br>
  
             <label>Nombre</label>
-            <input type="text" name="nombre">
+            <form:input path="nombre"/>
             <br>
  
             
             <label>Especialidad</label>
-            <input type="text" name="especialidad">
+            <form:input path="especialidad"/>
             <br>
  
             
             <label>Turno</label>
-            <input type="text" name="turno">
+            <form:input path="turno"/>
             <br>
  
             
             <label>Consultorio</label>
-            <input type="text" name="consultorio">
+            <form:input path="consultorio"/>
             <br>   
             
             <input type="submit" name="altaMedico" value="dar de alta">
+            </fieldset>
  
- 
-        </form>
+        </form:form>
     </body>
 </html>

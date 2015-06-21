@@ -40,9 +40,13 @@ public class LoginController {
         if(!model.containsAttribute("usuario")) {
             model.addAttribute("usuario", new Usuario());
         }
+        if(!model.containsAttribute("doctor")){
+            model.addAttribute("doctor",new Doctor());
+        }
         return "index";
     }
     
+  
     //Para loguear
     @RequestMapping(value= "/login.jsp",  method=RequestMethod.POST)
     public String getLogin(Usuario u,Model model){
