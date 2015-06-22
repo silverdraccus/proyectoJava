@@ -21,8 +21,7 @@
                     <c:if test="${not empty isAdmin}">
                         admin!
                         <a href="altaMedico.jsp" >Alta Médico</a>
-                        
-                        <a href="altaPaciente.jsp" >Alta Médico</a>
+                        <a href="altaPaciente.jsp" >Alta Paciente</a>
                         *ABC Pacientes
                         *ABC Doctores
                         *Cerrar session

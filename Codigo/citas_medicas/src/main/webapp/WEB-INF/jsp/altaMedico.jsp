@@ -14,41 +14,45 @@
     </head>
     <body>
         <c:url var="addAction" value="/altaMedico.jsp" ></c:url>
-        <form:form action="${addAction}" commandName="doctor" method="post">
-            <label>RFC</label>
-            <form:input path="rfc" />
+        <form:form action="${addAction}" modelAttribute="doctorForm" method="post">
+        <fieldset>
+                <form:label path="rfc">RFC</form:label>
+                <form:input path="rfc" />
             <br>
  
-            <label>Nombre</label>
+            <form:label path="nombre">Nombre</form:label>
             <form:input path="nombre"/>
             <br>
  
             
-            <label>Especialidad</label>
-            <form:select path="especialidad">
-                 <form:option value="NONE" label="--- Select ---"/>
+            <form:label path="especialidad">Especialidad</form:label>          
+            <form:select path="especialidad">    
+                <form:option value="NONE" label="--- Select ---"/>
                 <form:options items="${especialidades}" />
             </form:select>
             <br>
  
             
-            <label>Turno</label>
+            <form:label path="turno">Turno</form:label>  
+            <form:input path="turno"/>
+            <% /*
             <form:select path="turno">
-                 <form:option value="NONE" label="--- Select ---"/>
+                <form:option value="NONE" label="--- Select ---"/>
                 <form:options items="${turnos}" />
-            </form:select>
+            </form:select>*/%>
             <br>
- 
             
             <label>Consultorio</label>
-            <form:select path="consultorio">
+            <form:input path="consultorio"/>
+            <% /*<form:select path="consultorio">
                  <form:option value="NONE" label="--- Select ---"/>
                 <form:options items="${consultorios}" />
-            </form:select>
+            </form:select>*/%>  
+            
             <br>   
             
             <input type="submit" name="altaMedico" value="dar de alta">
- 
+        </fieldset>>
  
         </form:form>
     </body>

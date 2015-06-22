@@ -13,31 +13,32 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <c:url var="addAction" value="altaPaciente" ></c:url>
+    <c:url var="addAction" value="/altaPaciente.jsp" ></c:url>
         <form:form action="${addAction}" commandName="paciente" method="post">
+        <fieldset>
             <label>N&uacute;mero de Cuenta</label>
             <form:input path="noCuenta"/>
             <br>
- 
+
             <label>Nombre</label>
             <form:input path="nombre"/>
             <br>
- 
-            
+
+
             <label>Carrera</label>
             <form:input path="carrera"/>
             <br>
- 
-            
+
+
             <label>Fecha de Nacimiento</label>
-            <form:input class="date" path="fechaNacimiento"/>
+            <form:input path="fechaNacimiento"/>
             <br>
- 
-            
+
+
             <label>Semestre Vigente</label>
             <form:input path="semestreVigente"/>
             <br>   
-            
+
             <label>Calle</label>
             <form:input path="dirCalle"/>
             <br>   
@@ -60,10 +61,10 @@
             <label>Correo Electr&oacute;nico</label>
             <form:input path="correoE"/>
             <br>   
-            
+
             <input type="submit" name="altaPaciente" value="dar de alta">
- 
- 
-        </form:form>
-    </body>
+        </fieldset>
+
+    </form:form>
+</body>
 </html>

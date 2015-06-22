@@ -11,6 +11,6 @@ insert into doctor values  ('rfc1','nombreDr1','pediatría','matutino',2,2);
 insert into administrador values ('rfc2','nombreAdmin1',3);
 
 insert into usuario values (4,'alumno1','alumno1');
-insert into paciente(307333180,'Julio Vega','CC','1990-09-21',8,'calle',1,04564,'12345678','307333180@ciencias.unam.mx',4)
+insert into paciente values (307333180,'Julio Vega','CC','1990-09-21',8,'calle',1,04564,'12345678','307333180@ciencias.unam.mx',4)
 
 insert into cita values (1,'2015-06-23','00:00:00',1,'rfc1',307333180);
