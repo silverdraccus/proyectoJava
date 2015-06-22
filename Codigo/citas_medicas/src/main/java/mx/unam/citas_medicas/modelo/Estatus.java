@@ -52,7 +52,7 @@ public class Estatus  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "mx.unam.citas_medicas.modelo.Estatus[ idEst=" + idEst + " ]";
+        return String.valueOf(idEst);
     }
 
 

@@ -46,6 +46,7 @@ public class PacienteDAOImpl implements PacienteDAO{
         }
     }
     
+    @Override
     public void delete(Paciente persistentInstance) {
         Session session = sessionFactory.openSession();
         log.debug("deleting Paciente instance");

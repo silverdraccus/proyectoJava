@@ -22,6 +22,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     private static final Logger logger = LoggerFactory.getLogger(UsuarioDAOImpl.class);
     @Autowired
     private SessionFactory sessionFactory;
+    
     public static final String NOMBRE = "nombre";
     public static final String PASSWORD = "password";
     

@@ -63,7 +63,7 @@ public class Turno  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Turno[ turno=" + turno + " ]";
+        return turno;
     }
 
 

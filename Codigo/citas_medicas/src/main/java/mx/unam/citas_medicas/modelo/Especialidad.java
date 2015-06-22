@@ -63,7 +63,7 @@ public class Especialidad  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "mx.unam.citas_medicas.modelo.Especialidad[ especialidad=" + especialidad + " ]";
+        return especialidad;
     }
 
 

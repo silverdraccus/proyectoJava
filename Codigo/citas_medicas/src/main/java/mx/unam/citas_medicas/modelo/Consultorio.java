@@ -15,6 +15,7 @@ public class Consultorio  implements java.io.Serializable {
     private Set doctors = new HashSet(0);
 
     public Consultorio() {
+        
     }
 
 	
@@ -43,7 +44,7 @@ public class Consultorio  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Consultorio[ consultorio=" + consultorio + " ]";
+        return String.valueOf(consultorio);
     }
     
 

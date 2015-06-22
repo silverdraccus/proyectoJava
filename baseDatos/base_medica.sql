@@ -1,21 +1,21 @@
 create database if not exists citas_medicas;
 use citas_medicas;
 
-create table Usuario(
-id_us integer(10) primary key,
+create table usuario(
+id_us integer(10) auto_increment primary key,
 nombre char(255) unique,
 password char(255)
 );
 
-create table Administrador(
+create table administrador(
 rfc char(255) primary key,
 nombre varchar(255),
 id_us integer(10),
 constraint usuario_administrador_fk
-foreign key (id_us) references Usuario(id_us)
+foreign key (id_us) references usuario(id_us)
 );
 
-create table Paciente(
+create table paciente(
 noCuenta integer(10) primary key,
 nombre varchar(255),
 carrera varchar(255),
@@ -27,27 +27,27 @@ dirColonia integer(10),
 telefono varchar(255),
 correoE varchar(255),
 id_us integer(10),
-foreign key (id_us) references Usuario(id_us)
+foreign key (id_us) references usuario(id_us)
 );
 
-create table Consultorio(consultorio int(10) primary key);
-create table Turno(turno varchar(255) primary key);
-create table Especialidad(especialidad varchar(255) primary key);
+create table consultorio(consultorio int(10) primary key);
+create table turno(turno varchar(255) primary key);
+create table especialidad(especialidad varchar(255) primary key);
 
-create table Doctor(
+create table doctor(
 rfc varchar(25) primary key,
 nombre varchar(255),
 especialidad varchar(255),
 turno varchar(255),
 consultorio integer(10),
 id_us integer(10),
-foreign key (especialidad) references Especialidad(especialidad),
-foreign key (turno) references Turno(turno),
-foreign key (consultorio)references Consultorio(consultorio),
-foreign key (id_us) references Usuario(id_us)
+foreign key (especialidad) references especialidad(especialidad),
+foreign key (turno) references turno(turno),
+foreign key (consultorio)references consultorio(consultorio),
+foreign key (id_us) references usuario(id_us)
 );
 
-create table Estatus(
+create table estatus(
 id_est integer(10) primary key,
 descripcion char(255)
 );
@@ -59,12 +59,13 @@ hora time,
 id_est integer(10) ,
 rfc varchar(255), 
 noCuenta integer(10),
-foreign key (id_est) references Estatus(id_est),
-foreign key (rfc) references Doctor(rfc),
-foreign key (noCuenta) references Paciente(noCuenta)
+foreign key (id_est) references estatus(id_est),
+foreign key (rfc) references doctor(rfc),
+foreign key (noCuenta) references paciente(noCuenta)
 
 );
 
-insert into Estatus values (1,'activa'),(2,'terminada'),(3,'cancelada');
+insert into estatus values (1,'activa'),(2,'terminada'),(3,'cancelada');
+insert into turno values ('matutino'),('vespertino');
 
 

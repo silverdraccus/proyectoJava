@@ -42,7 +42,7 @@ public class LoginController {
         }
         return "index";
     }
-    
+     
     //Para loguear
     @RequestMapping(value= "/login.jsp",  method=RequestMethod.POST)
     public String getLogin(Usuario u,Model model){
