@@ -14,7 +14,7 @@
     </head>
     <body>
     <c:url var="addAction" value="/altaPaciente.jsp" ></c:url>
-        <form:form action="${addAction}" commandName="paciente" method="post">
+    <form:form action="${addAction}" modelAttribute="pacienteForm" method="post">
         <fieldset>
             <form:label path="noCuenta">N&uacute;mero de Cuenta</form:label>
             <form:input path="noCuenta"/>

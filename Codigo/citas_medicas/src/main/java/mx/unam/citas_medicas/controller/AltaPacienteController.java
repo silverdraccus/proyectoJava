@@ -6,6 +6,7 @@
 package mx.unam.citas_medicas.controller;
 
 import mx.unam.citas_medicas.modelo.Paciente;
+import mx.unam.citas_medicas.modelo.Usuario;
 import mx.unam.citas_medicas.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,13 +33,14 @@ public class AltaPacienteController {
 
     @RequestMapping(method = {RequestMethod.GET})
     public String initForm(Model model) {
-        model.addAttribute("paciente", new Paciente());
+        model.addAttribute("pacienteForm", new Paciente());
         return "altaPaciente";
     }
 
     @RequestMapping(method = {RequestMethod.POST})
     public String submitAltaPaciente(
-            @ModelAttribute("paciente") Paciente paciente, BindingResult result) {
+            @ModelAttribute("pacienteForm") Paciente paciente,
+            BindingResult result, Model model) {
         System.out.println("paciente: " + paciente + " nombre: " + paciente.getNombre()
                 + "carrera: " + paciente.getCarrera() + " nac: " + paciente.getFechaNacimiento() + "semevig: " + paciente.getSemestreVigente()
                 + " dirCalle " + paciente.getDirCalle()
@@ -47,22 +49,23 @@ public class AltaPacienteController {
                 + " telefono " + paciente.getTelefono()
                 + " correoE " + paciente.getCorreoE()
         );
-        GeneradorNuevoUsuario g=new GeneradorNuevoUsuario();
-        for(int i=0;i<10;i++){
-            System.out.println("usuario generado; "+g.getNuevoUsuario());
-        }
-    /*Usuario u=new Usuario("usuario"+Math.random(), String.valueOf(Math.random()), 
-     new HashSet(),  new HashSet(),  new HashSet());
-     System.out.println("usuario creado: "+u);
-        
-     UsuarioService us=new UsuarioServiceImpl();
-     us.agregarUsuario(u);
-     doctor.setUsuario(u);
-     pacienteService.agregarPaciente(paciente);
-     */
+        GeneradorNuevoUsuario g = new GeneradorNuevoUsuario();
 
-    return "paginaPrueba";
+        Usuario u = g.getNuevoUsuario();
+        model.addAttribute("usuario", u);
+        model.addAttribute("isDoctor", false);
+        model.addAttribute("isPaciente", true);
+        /*Usuario u=new Usuario("usuario"+Math.random(), String.valueOf(Math.random()), 
+         new HashSet(),  new HashSet(),  new HashSet());
+         System.out.println("usuario creado: "+u);
+        
+         UsuarioService us=new UsuarioServiceImpl();
+         us.agregarUsuario(u);
+         doctor.setUsuario(u);
+         pacienteService.agregarPaciente(paciente);
+         */
+
+        return "mostrarAlta";
     }
 
-   
 }

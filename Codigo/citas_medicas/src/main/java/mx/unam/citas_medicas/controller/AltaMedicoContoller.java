@@ -9,6 +9,7 @@ import java.util.HashSet;
 import mx.unam.citas_medicas.modelo.Consultorio;
 import mx.unam.citas_medicas.modelo.Doctor;
 import mx.unam.citas_medicas.modelo.Turno;
+import mx.unam.citas_medicas.modelo.Usuario;
 import mx.unam.citas_medicas.service.CatalogoService;
 import mx.unam.citas_medicas.service.DoctorService;
 import mx.unam.citas_medicas.service.impl.CatalogoServiceImpl;
@@ -49,9 +50,15 @@ public class AltaMedicoContoller {
     }
 
     @RequestMapping(method = {RequestMethod.POST})
-    public String submitAltaPaciente(@ModelAttribute("doctorForm")Doctor doctor,BindingResult result) {
+    public String submitAltaPaciente(@ModelAttribute("doctorForm")Doctor doctor,BindingResult result,Model model) {
         System.out.println("doctor ingresado: "+doctor+" epscieliadad: "+doctor.getEspecialidad() 
                 +" turno: "+doctor.getTurno()+" consultorio: "+doctor.getConsultorio());
+        GeneradorNuevoUsuario g=new GeneradorNuevoUsuario();
+        
+        Usuario u=g.getNuevoUsuario();
+        model.addAttribute("usuario", u);
+        model.addAttribute("isDoctor", true);
+        model.addAttribute("isPaciente", false);
         /*Usuario u=new Usuario("usuario"+Math.random(), String.valueOf(Math.random()), 
                 new HashSet(),  new HashSet(),  new HashSet());
         System.out.println("usuario creado: "+u);
@@ -61,7 +68,7 @@ public class AltaMedicoContoller {
         doctor.setUsuario(u);
         doctorService.agregarDoctor(doctor);
         */
-        return "paginaPrueba";
+        return "mostrarAlta";
     }
 
     private void initModelList(Model model) {
