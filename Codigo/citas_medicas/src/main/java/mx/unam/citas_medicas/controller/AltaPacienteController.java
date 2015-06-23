@@ -47,6 +47,10 @@ public class AltaPacienteController {
                 + " telefono " + paciente.getTelefono()
                 + " correoE " + paciente.getCorreoE()
         );
+        GeneradorNuevoUsuario g=new GeneradorNuevoUsuario();
+        for(int i=0;i<10;i++){
+            System.out.println("usuario generado; "+g.getNuevoUsuario());
+        }
     /*Usuario u=new Usuario("usuario"+Math.random(), String.valueOf(Math.random()), 
      new HashSet(),  new HashSet(),  new HashSet());
      System.out.println("usuario creado: "+u);
@@ -57,7 +61,7 @@ public class AltaPacienteController {
      pacienteService.agregarPaciente(paciente);
      */
 
-return "paginaPrueba";
+    return "paginaPrueba";
     }
 
    

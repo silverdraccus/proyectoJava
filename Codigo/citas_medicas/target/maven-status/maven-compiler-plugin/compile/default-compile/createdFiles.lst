@@ -34,6 +34,7 @@ mx/unam/citas_medicas/dao/UsuarioDAO.class
 mx/unam/citas_medicas/modelo/Paciente.class
 mx/unam/citas_medicas/modelo/Cita.class
 mx/unam/citas_medicas/dao/impl/AdministradorDAOImpl.class
+mx/unam/citas_medicas/controller/GeneradorNuevoUsuario.class
 mx/unam/citas_medicas/modelo/Estatus.class
 mx/unam/citas_medicas/dao/EstatusDAO.class
 mx/unam/citas_medicas/dao/impl/DoctorDAOImpl.class
