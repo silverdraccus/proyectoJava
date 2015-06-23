@@ -15,6 +15,7 @@ import mx.unam.citas_medicas.service.impl.CatalogoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,7 +49,7 @@ public class AltaMedicoContoller {
     }
 
     @RequestMapping(method = {RequestMethod.POST})
-    public String submitAltaPaciente(@ModelAttribute("doctorForm")Doctor doctor,Model model) {
+    public String submitAltaPaciente(@ModelAttribute("doctorForm")Doctor doctor,BindingResult result) {
         System.out.println("doctor ingresado: "+doctor+" epscieliadad: "+doctor.getEspecialidad() 
                 +" turno: "+doctor.getTurno()+" consultorio: "+doctor.getConsultorio());
         /*Usuario u=new Usuario("usuario"+Math.random(), String.valueOf(Math.random()), 

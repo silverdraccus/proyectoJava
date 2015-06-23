@@ -34,25 +34,22 @@
  
             
             <form:label path="turno">Turno</form:label>  
-            <form:input path="turno"/>
-            <% /*
             <form:select path="turno">
                 <form:option value="NONE" label="--- Select ---"/>
                 <form:options items="${turnos}" />
-            </form:select>*/%>
+            </form:select>
             <br>
             
-            <label>Consultorio</label>
-            <form:input path="consultorio"/>
-            <% /*<form:select path="consultorio">
+            <form:label path="consultorio">Consultorio</form:label>           
+            <form:select path="consultorio">
                  <form:option value="NONE" label="--- Select ---"/>
                 <form:options items="${consultorios}" />
-            </form:select>*/%>  
+            </form:select>  
             
             <br>   
             
             <input type="submit" name="altaMedico" value="dar de alta">
-        </fieldset>>
+        </fieldset>
  
         </form:form>
     </body>

@@ -16,49 +16,49 @@
     <c:url var="addAction" value="/altaPaciente.jsp" ></c:url>
         <form:form action="${addAction}" commandName="paciente" method="post">
         <fieldset>
-            <label>N&uacute;mero de Cuenta</label>
+            <form:label path="noCuenta">N&uacute;mero de Cuenta</form:label>
             <form:input path="noCuenta"/>
             <br>
 
-            <label>Nombre</label>
+            <form:label path="nombre">Nombre</form:label>
             <form:input path="nombre"/>
             <br>
 
 
-            <label>Carrera</label>
+            <form:label path="carrera">Carrera</form:label>
             <form:input path="carrera"/>
             <br>
 
 
-            <label>Fecha de Nacimiento</label>
+            <form:label path="fechaNacimiento">Fecha de Nacimiento(YYYY-MM-DD)</form:label>
             <form:input path="fechaNacimiento"/>
             <br>
 
 
-            <label>Semestre Vigente</label>
+            <form:label path="semestreVigente">Semestre Vigente</form:label>
             <form:input path="semestreVigente"/>
             <br>   
 
-            <label>Calle</label>
+            <form:label path="dirCalle">Calle</form:label>
             <form:input path="dirCalle"/>
             <br>   
 
 
-            <label>N&uacute;mero</label>
+            <form:label path="dirNumero">N&uacute;mero</form:label>
             <form:input path="dirNumero"/>
             <br>   
 
 
-            <label>C.P.</label>
+            <form:label path="dirColonia">C.P.</form:label>
             <form:input path="dirColonia"/>
             <br>   
 
 
-            <label>Tel&eacute;fono</label>
-            <form:input type="text" path="telefono"/>
+            <form:label path="telefono">Tel&eacute;fono</form:label>
+            <form:input path="telefono"/>
             <br>   
 
-            <label>Correo Electr&oacute;nico</label>
+            <form:label path="correoE">Correo Electr&oacute;nico</form:label>
             <form:input path="correoE"/>
             <br>   
 
