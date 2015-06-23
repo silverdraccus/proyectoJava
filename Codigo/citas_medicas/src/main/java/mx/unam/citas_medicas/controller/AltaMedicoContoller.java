@@ -12,7 +12,9 @@ import mx.unam.citas_medicas.modelo.Turno;
 import mx.unam.citas_medicas.modelo.Usuario;
 import mx.unam.citas_medicas.service.CatalogoService;
 import mx.unam.citas_medicas.service.DoctorService;
+import mx.unam.citas_medicas.service.UsuarioService;
 import mx.unam.citas_medicas.service.impl.CatalogoServiceImpl;
+import mx.unam.citas_medicas.service.impl.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +43,13 @@ public class AltaMedicoContoller {
         this.doctorService=doctorService;
     }
     
+    UsuarioService usuarioService;
+    @Autowired(required = true)
+    public void setUsuarioService(UsuarioService usuarioService){
+        this.usuarioService=usuarioService;
+    }
+    
+    
     
     @RequestMapping(method = {RequestMethod.GET})
     public String initForm(Model model) {
@@ -58,16 +67,11 @@ public class AltaMedicoContoller {
         Usuario u=g.getNuevoUsuario();
         model.addAttribute("usuario", u);
         model.addAttribute("isDoctor", true);
-        model.addAttribute("isPaciente", false);
-        /*Usuario u=new Usuario("usuario"+Math.random(), String.valueOf(Math.random()), 
-                new HashSet(),  new HashSet(),  new HashSet());
-        System.out.println("usuario creado: "+u);
-        
-        UsuarioService us=new UsuarioServiceImpl();
-        us.agregarUsuario(u);
+        usuarioService.agregarUsuario(u);
         doctor.setUsuario(u);
+        doctor.setConsultorio(catalogoService.getCatalogoConsultorios().get(0));
         doctorService.agregarDoctor(doctor);
-        */
+        
         return "mostrarAlta";
     }
 
