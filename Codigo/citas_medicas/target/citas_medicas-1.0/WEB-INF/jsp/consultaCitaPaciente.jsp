@@ -12,17 +12,17 @@
         <title>Consulta de citas</title>
     </head>
     <body>
-         <br>
+        <br>
 
-        <a href="${pageContext.request.contextPath}/crearNuevaCita?rfc=${cita.rfc}">
-			Agregar nueva cita
+        <a href="/crearNuevaCita?rfc=${cita.rfc}">
+            Agregar nueva cita
         </a>	
         <br>        
-        <a href="${pageContext.request.contextPath}/editarDatos=${cita.noCuenta}">
-							editarDatos						       
+        <a href="/editarDatos=${cita.noCuenta}">
+            editarDatos						       
         </a>                        
 
-                        <br>
+        <br>
         <table border="1">
             <tr> 
                 <th>id_cit</th> 
@@ -38,13 +38,13 @@
                     <td>${cita.fecha}</td>
                     <td>${cita.estatus}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/eliminaCitasPaciente?id_cit=${cita.id_cit}">
-							eliminar cita
+                        <a href="/eliminaCitasPaciente?id_cit=${cita.id_cit}">
+                            eliminar cita
                         </a>                       
                     </td>                                       
                     <td>
-                        <a href="${pageContext.request.contextPath}/cancelarCitasPaciente?id_cit=${cita.id_cit}">
-							cancelar cita						
+                        <a href="/cancelarCitasPaciente?id_cit=${cita.id_cit}">
+                            cancelar cita						
                         </a>            
                     </td>
 

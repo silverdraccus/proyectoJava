@@ -13,6 +13,7 @@ import mx.unam.citas_medicas.dao.PacienteDAO;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * @author julio
@@ -45,11 +46,13 @@ public class PacienteServiceImpl implements PacienteService{
         return this.pacienteDao.findAll();        
     }
 
+    @Transactional
     @Override
     public Paciente getPacienteById(int rfc) {
         return this.pacienteDao.findById(rfc);
     }
 
+    @Transactional
     @Override
     public Paciente getPacienteByNombre(String nombre) {
         List<Paciente>list= this.pacienteDao.findByNombre(nombre);
@@ -59,11 +62,18 @@ public class PacienteServiceImpl implements PacienteService{
         return null;
     }
 
+    @Transactional
     @Override
     public Paciente getPacienteByUsuario(Usuario u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("usuario: "+u);
+        List<Paciente> lp=this.pacienteDao.findByProperty("usuario", u);
+        if(lp.size()>0){
+            return lp.iterator().next();
+        }
+        return null;
     }
 
+    @Transactional
     @Override
     public void agregarPaciente(Paciente paciente) {
        this.pacienteDao.save(paciente);  

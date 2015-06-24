@@ -24,20 +24,23 @@
                         <a href="altaPaciente.jsp" >Alta Paciente</a>
                         *ABC Pacientes
                         *ABC Doctores
-                        *Cerrar session
+                        <a href="logout.jsp">*Cerrar session</a> 
                     </c:if>
                     <c:if test="${not empty isDoctor}">
                         doctor!
                         <a href="consultaCitaMedico.jsp">Consultar citas</a>
                         Cancelar citas
-                        *Cerrar session
+                        <a href="logout.jsp">*Cerrar session</a>
                     </c:if>
                     <c:if test="${empty isDoctor and empty isAdmin}">
                         Paciente!
-                        <a href="consultaCitasPaciente.html">Consulta Citas</a>
+                        <a href="consultaCitasPaciente.jsp">Consulta Citas</a>
+                        <a href="crearNuevaCita.jsp">Crear nueva cita</a>
+                        
                         ABC Citas
                         Cambiar datos de contacto
-                        *Cerrar session
+                        <a href="editarDatos.jsp">Editar datos de Contacto</a>
+                        <a href="logout.jsp">*Cerrar session</a>
                     </c:if>
                     <div class="panel panel-default">
                         <div class="panel-body">

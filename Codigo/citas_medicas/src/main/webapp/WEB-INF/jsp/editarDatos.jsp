@@ -12,57 +12,74 @@
         <title>Editar datos de paciente</title>
     </head>
     <body>
+        <c:url var="addAction" value="/guardarPaciente.jsp" ></c:url>
+    <form:form action="${addAction}" method="post" modelAttribute="pacienteForm">
         <table border="1">
             <tr> 
-nombre varchar(255),
-carrera varchar(255),
-fechaNacimiento date,
-semestreVigente integer(10),
-dirCalle varchar(255),
-dirNumero integer(10),
-dirColonia integer(10),
-telefono varchar(255),
-correoE varchar(255),
-id_us integer(10),
-
-                <th>nombre</th> 
-                <th>carrera</th>
-                <th>fechaNacimiento</th>
-                <th>semestreVigente</th>
-                <th>dirCalle</th>
-                <th>dirNumero</th>
-                <th>dirColonia</th>
-                <th>tel&eacute;fono</th>
-                <th>correo electr&oacute;nico</th>
-                <th>telefono</th>
-                <th>cambiar nombre de usuario</th>
-                <th>cambiar contraseña</th>
+                <td>nombre</td>             
+                <td>${pacienteForm.nombre}</td>
             </tr>
-            <c:forEach var="paciente" items="{paciente}">
-                <tr>
-                    <td>${paciente.nombre} </td>
-                    <td>${paciente.carrera}</td>
-                    <td>${paciente.fechaNacimiento}</td>
-                    <td>${paciente.semestreVigente}</td>
-                    <td>${paciente.dirCalle}</td>
-                    <td>${paciente.dirNumero}</td>
-                    <td>${paciente.dirColonia}</td>
-                    <td>${paciente.telefono}</td>
-                    <td>${paciente.correoE}</td>                   
-                    <td>
-                        <a href="${pageContext.request.contextPath}/cambiarusuario?noCuenta=${paciente.noCuenta}">
-							Cambiar usuario
-                        </a>                       
-                    </td>                                       
-                    <td>
-                        <a href="${pageContext.request.contextPath}/cambiarContrasena?noCuenta=${paciente.noCuenta}">
-							Cambiar usuario
-                        </a>                       
-                    </td>  
+            <tr>          
+                <td>carrera</td>
+                <td>${pacienteForm.carrera}</td>
 
-                </tr>
+            </tr>
+            <tr>
+                <td>fechaNacimiento</td>
+                <td>${pacienteForm.fechaNacimiento}</td>
+
+            </tr>
+            <tr>
+                <td>semestreVigente</td>
+                <td>${pacienteForm.semestreVigente}</td>
+            </tr>
+            <tr>
+                <td>dirCalle</td>
+                <td>${pacienteForm.dirCalle}</td>                
+            </tr>
+            <tr>
+                <td>dirNumero</td>
+                <td>${pacienteForm.dirNumero}</td>            
+            </tr>
+            <tr>
+                <td>dirColonia</td>            
+                <td>${pacienteForm.dirColonia}</td>
+
+            </tr>
+            <tr>
+                <td>tel&eacute;fono</td>
+                <td>${pacienteForm.telefono}</td>
+            </tr>
+            <tr>
+                <td>correo electr&oacute;nico</td>
+                <td>${pacienteForm.correoE}</td>                   
+
+            </tr>
+            <tr>
+                <td>cambiar nombre de usuario</td>
+
+                <td>
+                    <a href="$/cambiarusuario?noCuenta=${paciente.noCuenta}">
+                        Cambiar usuario
+                    </a>                                       
+                </td>  
+            </tr>
+            <tr>
+                <td>cambiar contraseña</td>                           
+                <td> 
+                    <a href="/cambiarContrasena?noCuenta=${paciente.noCuenta}">
+                        Cambiar contrase&ntilde;a
+                    </a>                                           
+                </td>  
+            </tr>
+            <tr>
+
+
+
+            </tr>
             </c:forEach>
         </table>
+    </form:form>
 
-    </body>
+</body>
 </html>

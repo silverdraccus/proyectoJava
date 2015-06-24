@@ -14,8 +14,7 @@
     </head>
     <body>
         <br>
-
-        <a href="${pageContext.request.contextPath}/crearNuevaCita?rfc=${cita.rfc}">
+        <a href="$/crearNuevaCita?rfc=${cita.rfc}">
 			Agregar nueva cita
         </a>	
         <br>
@@ -35,17 +34,17 @@
                     <td>${cita.fecha}</td>
                     <td>${cita.estatus}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/consultaCitasPaciente?noCuenta=${cita.noCuenta}">
+                        <a href="/consultaCitasPaciente?noCuenta=${cita.noCuenta}">
 							${cita.noCuenta}						
                         </a>                        
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/eliminaCitasPaciente?id_cit=${cita.id_cit}">
+                        <a href="/eliminaCitasPaciente?id_cit=${cita.id_cit}">
 							eliminar cita
                         </a>                       
                     </td>                                       
                     <td>
-                        <a href="${pageContext.request.contextPath}/cancelarCitasPaciente?id_cit=${cita.id_cit}">
+                        <a href="/cancelarCitasPaciente?id_cit=${cita.id_cit}">
 							cancelar cita						
                         </a>            
                     </td>
