@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,14 +14,15 @@
         <title>crearNuevaCita</title>
     </head>
     <body>
-        <form action="crearNuevaCita" method="post">
-            
-            <input type="date" name="fecha"/>
-            <input type="text" name="hora"/>
+
+        <c:url var="addAction" value="/crearNuevaCita.jsp" ></c:url>
+        <form:form action="${addAction}" method="post" modelAttribute="cita">           
+            <form:input path="fecha"/>
+            <form:input path="hora"/>
             <%-- dado que se está agregando suponemos está activa--%>
-            <input type="hidden" name="estatus" value="1"/>            
-            <input type="text" name="noCuenta"/>
+            <form:input type="hidden" path="estatus"/>            
+            <form:input path="noCuenta"/>
             <input type="submit" name="guardarCita" value="guardar cita"/>
-        </form>
+        </form:form>
     </body>
 </html>

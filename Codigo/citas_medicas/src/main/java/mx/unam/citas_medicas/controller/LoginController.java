@@ -11,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 
 @Controller
+@SessionAttributes("usuarioLogin")
 public class LoginController {
 
     UsuarioService usuarioService;
@@ -37,8 +39,8 @@ public class LoginController {
     
     @RequestMapping(value = {"/*", "/index"})
     public String getIndex(Model model) {
-        if(!model.containsAttribute("usuario")) {
-            model.addAttribute("usuario", new Usuario());
+        if(!model.containsAttribute("usuarioLogin")) {
+            model.addAttribute("usuarioLogin", new Usuario());
         }
         return "index";
     }
@@ -49,7 +51,7 @@ public class LoginController {
         u=usuarioService.getUsuarioByNombreAndByPassword(u);
         System.out.println("U: "+u);
         if (u!=null){
-            model.addAttribute("usuario", u);
+            model.addAttribute("usuarioLogin", u);
             if (isDoctor(u, doctorService)){
                 model.addAttribute("isDoctor", "true");
             }
@@ -58,7 +60,7 @@ public class LoginController {
             } 
             return "menuGeneral";
         }else{
-            model.addAttribute("usuario", new Usuario());
+            model.addAttribute("usuarioLogin", new Usuario());
             model.addAttribute("msj","Datos incorrectos");
             return "index";
         }
@@ -67,7 +69,7 @@ public class LoginController {
     //Para salir
     @RequestMapping(value= "/logout.jsp")
     public String getLogout(Model model){
-        model.addAttribute("usuario",new Usuario());
+        model.addAttribute("usuarioLogin",new Usuario());
         return "index";
     }
     

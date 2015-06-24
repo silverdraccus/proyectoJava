@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +17,10 @@
         <c:url var="addAction" value="/guardarPaciente.jsp" ></c:url>
     <form:form action="${addAction}" method="post" modelAttribute="pacienteForm">
         <table border="1">
+            <tr>
+                <td>N&uacute;mero de cuenta</td>
+                <td>${pacienteForm.noCuenta}</td>
+            </tr>
             <tr> 
                 <td>nombre</td>             
                 <td>${pacienteForm.nombre}</td>
@@ -59,7 +65,7 @@
                 <td>cambiar nombre de usuario</td>
 
                 <td>
-                    <a href="$/cambiarusuario?noCuenta=${paciente.noCuenta}">
+                    <a href="/cambiarusuario">
                         Cambiar usuario
                     </a>                                       
                 </td>  
@@ -67,7 +73,7 @@
             <tr>
                 <td>cambiar contraseña</td>                           
                 <td> 
-                    <a href="/cambiarContrasena?noCuenta=${paciente.noCuenta}">
+                    <a href="/cambiarContrasena">
                         Cambiar contrase&ntilde;a
                     </a>                                           
                 </td>  

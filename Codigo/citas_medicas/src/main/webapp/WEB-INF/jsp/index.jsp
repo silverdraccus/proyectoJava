@@ -20,7 +20,7 @@
                         </div>
                         <div class="panel-body">
                             <c:url var="addAction" value="/login.jsp" ></c:url>
-                            <form:form action="${addAction}" commandName="usuario">
+                            <form:form action="${addAction}" modelAttribute="usuarioLogin">
                             <!--form action="LoginController" method="post" role="form"-->
                                 <fieldset>
                                     <div class="form-group">

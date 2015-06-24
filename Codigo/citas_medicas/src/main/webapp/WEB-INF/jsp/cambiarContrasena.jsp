@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,20 +14,22 @@
         <title>Cambiar Contrase&ntilde;a</title>
     </head>
     <body>
-        <form action="cambiarContrasena" method="post">
-            <label>Escribe tu antigua contrase&ntilde;a</label>
-            <input type="password" name="contrasenaAntigua">
+
+        <c:url var="addAction" value="/cambiarContrasena.jsp" ></c:url>
+        <form:form action="${addAction}" method="post" modelAttribute="contrasena">
+            <form:label path="contrasenaAntigua">Escribe tu antigua contrase&ntilde;a</form:label>
+            <form:input path="contrasenaAntigua"/>
             <br>
-            <label>Escribe tu nueva contrase&ntilde;a</label>
-            <input type="password" name="contrasenaNueva">
+            <form:label path="contrasenaNueva">Escribe tu nueva contrase&ntilde;a</form:label>
+            <form:input path="contrasenaNueva"/>
             <br>
-            <label>Confirma tu nueva contrase&ntilde;a</label>
-            <input type="password" name="contrasenaNuevaConfirmacion">
+            <form:label path="contrasenaNuevaConfirmacion">Confirma tu nueva contrase&ntilde;a</form:label>
+            <form:input path="contrasenaNuevaConfirmacion"/>
             <br>
-                
+
             <input type="submit" name="guardarContrasena" value="cambiar contraseña">
             <br>
-            
-        </form>
+
+        </form:form>
     </body>
 </html>

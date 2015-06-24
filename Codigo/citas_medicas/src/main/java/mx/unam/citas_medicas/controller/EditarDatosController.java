@@ -32,11 +32,11 @@ public class EditarDatosController {
     }
 
     @RequestMapping("/editarDatos.jsp")
-    public String getDatos(@ModelAttribute("usuario") Usuario u,
-            BindingResult result, Model model){
+    public String getDatos(@ModelAttribute("usuarioLogin") Usuario u,
+            BindingResult result, Model model){  
         u.setIdUs(4);
-        u.setNombre("admin1");
-        u.setPassword("admin1");
+        u.setNombre("alumno1");
+        u.setPassword("alumno1");   
         Paciente p = pacienteService.getPacienteByUsuario(u);
         model.addAttribute("pacienteForm", p);
         return "editarDatos";

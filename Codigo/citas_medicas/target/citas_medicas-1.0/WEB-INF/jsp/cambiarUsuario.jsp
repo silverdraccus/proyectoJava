@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,11 +14,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-                
-        <label>Escribe tu nuevo usuario</label>
-            <input type="text" name="usuarioNuevo">
         
-            <br>
-            <input type="submit" name="guardarUsuarioNuevo" value="guardar nuevo usuario"/>
-    </body>
+
+    <c:url var="addAction" value="/cambiarUsuario.jsp" ></c:url>
+    <form:form action="${addAction}" modelAttribute="usuarioForm" method="post">      
+        <form:label path="nombre">Escribe tu nuevo usuario</form:label>
+        <form:input path="nombre"/>
+
+        <br>
+
+        <input type="submit" name="guardarUsuarioNuevo" value="guardar nuevo usuario"/>
+    </form:form>
+</body>
 </html>
