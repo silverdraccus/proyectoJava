@@ -43,8 +43,8 @@ public class CrearNuevaCitaController {
         Cita cita=new Cita();
         List<Estatus> estatus=estatusService.listaEstatuss();
         Estatus activo = new Estatus(1);
-        for(int i=0;i<estatus.size();i++){
-            activo=estatus.get(i);
+        for (Estatus estatu : estatus) {
+            activo = estatu;
             if(activo.getDescripcion().equalsIgnoreCase("activa")){
                 break;
             }                
@@ -58,7 +58,7 @@ public class CrearNuevaCitaController {
     public String guardarNuevaCita(@ModelAttribute("cita")Cita cita,
             BindingResult result){
         citaService.agregarCita(cita);
-        return "consultarCitaMedico";
+        return "consultarCitaPaciente";
     }
     
 }
