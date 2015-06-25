@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
     <jsp:include page="/headers.jsp"></jsp:include>
+    <link href="<c:url value="/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/bower_components/datatables-responsive/css/dataTables.responsive.css" />" rel="stylesheet">
     <body>
          <jsp:include page="/menu.jsp"></jsp:include> 
         <div id="page-wrapper">
@@ -67,7 +69,7 @@
             <!-- /.row -->
         </div>
         <jsp:include page="/footer.jsp"></jsp:include>
-        <script src="<c:url value="/resources/bower_components/datatables/media/js/jquery.dataTables.min.js" />"></script>
+        <script src="<c:url value="/resources/bower_components/datatables/media/js/jquery.dataTables.js" />"></script>
         <script src="<c:url value="/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js" />"></script>
         <script>
         $(document).ready(function() {
