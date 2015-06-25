@@ -17,34 +17,34 @@
             <div class="row">
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
-                    <h2>Bienvenid@</h2>
-                    <c:if test="${not empty isAdmin}">
-                        admin!
-                        <a href="altaMedico.jsp" >Alta Médico</a>
-                        <a href="altaPaciente.jsp" >Alta Paciente</a>
-                        *ABC Pacientes
-                        *ABC Doctores
-                        <a href="logout.jsp">*Cerrar session</a> 
-                    </c:if>
-                    <c:if test="${not empty isDoctor}">
-                        doctor!
-                        <a href="consultaCitaMedico.jsp">Consultar citas</a>
-                        Cancelar citas
-                        <a href="logout.jsp">*Cerrar session</a>
-                    </c:if>
-                    <c:if test="${empty isDoctor and empty isAdmin}">
-                        Paciente!
-                        <a href="consultaCitasPaciente.jsp">Consulta Citas</a>
-                        <a href="crearNuevaCita.jsp">Crear nueva cita</a>
-                        
-                        ABC Citas
-                        Cambiar datos de contacto
-                        <a href="editarDatos.jsp">Editar datos de Contacto</a>
-                        <a href="logout.jsp">*Cerrar session</a>
-                    </c:if>
+                    <h2>Bienvenid@ <c:out value="${usuarioLogin.nombre}" /></h2>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                            <c:if test="${not empty isAdmin}">
+                                admin!
+                                *ABC Pacientes
+                                *ABC Doctores
+                                <a href="doctores.jsp" >Medicos</a><br/>
+                                <a href="pacientes.jsp" >Pacientes</a><br/>
+                                <a href="logout.jsp">*Cerrar session</a> 
+                            </c:if>
+                            <c:if test="${not empty isDoctor}">
+                                doctor!
+                                *Consultar citas
+                                *Cancelar citas
+                                <a href="consultaCitaMedico.jsp">Consultar citas</a>
+
+                                <a href="logout.jsp">*Cerrar session</a>
+                            </c:if>
+                            <c:if test="${empty isDoctor and empty isAdmin}">
+                                Paciente!
+                                *ABC Citas
+                                *Cambiar datos de contacto
+                                <a href="consultaCitasPaciente.jsp">Consulta Citas</a>
+                                <a href="crearNuevaCita.jsp">Crear nueva cita</a>
+                                <a href="editarDatos.jsp">Editar datos de Contacto</a>
+                                <a href="logout.jsp">*Cerrar session</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
