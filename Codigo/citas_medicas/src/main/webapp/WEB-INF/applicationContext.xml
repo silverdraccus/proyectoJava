@@ -76,22 +76,41 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
+    
     <bean id="especialidadDAOImpl" class="mx.unam.citas_medicas.dao.impl.EspecialidadDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="especialidadService" class="mx.unam.citas_medicas.service.impl.EspecialidadServiceImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
     <bean id="turnoDAOImpl" class="mx.unam.citas_medicas.dao.impl.TurnoDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-    <bean id="estatusDAOImpl" class="mx.unam.citas_medicas.dao.impl.EstatusDAOImpl">
+    <bean id="turnoService" class="mx.unam.citas_medicas.service.impl.TurnoServiceImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+    
     <bean id="consultorioDAOImpl" class="mx.unam.citas_medicas.dao.impl.ConsultorioDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+    <bean id="consultorioService" class="mx.unam.citas_medicas.service.impl.ConsultorioServiceImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    
+    <bean id="estatusDAOImpl" class="mx.unam.citas_medicas.dao.impl.EstatusDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
 
-  
-    <bean id="catalogoService" class="mx.unam.citas_medicas.service.impl.CatalogoServiceImpl">
+    <bean id="estatusService" class="mx.unam.citas_medicas.service.impl.EstatusServiceImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="citaDAOImpl" class="mx.unam.citas_medicas.dao.impl.CitaDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="citaService" class="mx.unam.citas_medicas.service.impl.CitaServiceImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 

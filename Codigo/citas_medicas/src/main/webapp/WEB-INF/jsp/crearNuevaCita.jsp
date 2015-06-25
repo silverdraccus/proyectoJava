@@ -17,11 +17,25 @@
 
         <c:url var="addAction" value="/crearNuevaCita.jsp" ></c:url>
         <form:form action="${addAction}" method="post" modelAttribute="cita">           
+            <form:label path="fecha">Fecha</form:label>
             <form:input path="fecha"/>
+            <br>
+            
+            <form:label path="hora">Hora</form:label>
             <form:input path="hora"/>
+            <br>
+            
             <%-- dado que se está agregando suponemos está activa--%>
-            <form:input type="hidden" path="estatus"/>            
-            <form:input path="noCuenta"/>
+            <form:input type="hidden" path="estatus"/>
+            <br>
+            
+            <form:label path="doctor.rfc">RFC</form:label>
+            <form:input path="doctor.rfc"/>
+            <br>
+            
+            <form:label path="paciente.noCuenta">N&uacute;mero de cuenta</form:label>
+            <form:input path="paciente.noCuenta"/>
+            <br>
             <input type="submit" name="guardarCita" value="guardar cita"/>
         </form:form>
     </body>

@@ -16,9 +16,9 @@ import mx.unam.citas_medicas.modelo.Turno;
  * @author julio
  */
 public interface CatalogoService {
-
+/*
     public List<Turno> getCatalogoTurnos();
     public List<Especialidad> getCatalogoEspecialidades();
     public List<Estatus> getCatalogoEstatus();
-    public List<Consultorio> getCatalogoConsultorios();
+    public List<Consultorio> getCatalogoConsultorios();*/
 }

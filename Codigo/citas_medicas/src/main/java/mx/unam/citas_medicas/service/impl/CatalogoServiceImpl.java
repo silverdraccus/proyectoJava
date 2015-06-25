@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class CatalogoServiceImpl implements CatalogoService {
-    @Autowired
+    /*@Autowired
     private ConsultorioDAO consultorioDAO;   
     public void setConsultorioDAO(ConsultorioDAO cDAO){
         this.consultorioDAO=cDAO;
@@ -86,5 +86,5 @@ public class CatalogoServiceImpl implements CatalogoService {
     public List<Consultorio> getCatalogoConsultorios() {
         return this.consultorioDAO.findAll();
     }
-    
+    */
 }
