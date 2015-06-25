@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.unam.citas_medicas.service.impl;
 
 import java.util.List;
@@ -14,10 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-/**
- *
- * @author julio
- */
+
 @Service
 public class PacienteServiceImpl implements PacienteService{
     @Autowired
@@ -31,29 +23,39 @@ public class PacienteServiceImpl implements PacienteService{
     public void setPacienteDAO(PacienteDAO pacienteDAO){
         this.pacienteDao=pacienteDAO;
     }
+    
     @Override
+    @Transactional
+    public void agregarPaciente(Paciente paciente) {
+       this.pacienteDao.save(paciente);  
+    }
+    
+    @Override
+    @Transactional
     public void actualizarPaciente(Paciente p) {
-        this.pacienteDao.save(p);
+        this.pacienteDao.merge(p);
     }
 
     @Override
+    @Transactional
     public void borrarPaciente(int id) {
         this.pacienteDao.delete(getPacienteById(id));
     }
 
     @Override
+    @Transactional
     public List<Paciente> listaPacientes() {
         return this.pacienteDao.findAll();        
     }
 
-    @Transactional
     @Override
+    @Transactional
     public Paciente getPacienteById(int rfc) {
         return this.pacienteDao.findById(rfc);
     }
 
-    @Transactional
     @Override
+    @Transactional
     public Paciente getPacienteByNombre(String nombre) {
         List<Paciente>list= this.pacienteDao.findByNombre(nombre);
         if(list.size()>0){
@@ -62,8 +64,8 @@ public class PacienteServiceImpl implements PacienteService{
         return null;
     }
 
-    @Transactional
     @Override
+    @Transactional
     public Paciente getPacienteByUsuario(Usuario u) {
         System.out.println("usuario: "+u);
         List<Paciente> lp=this.pacienteDao.findByProperty("usuario", u);
@@ -73,10 +75,6 @@ public class PacienteServiceImpl implements PacienteService{
         return null;
     }
 
-    @Transactional
-    @Override
-    public void agregarPaciente(Paciente paciente) {
-       this.pacienteDao.save(paciente);  
-    }
+  
     
 }
