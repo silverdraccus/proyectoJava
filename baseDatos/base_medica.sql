@@ -53,7 +53,7 @@ descripcion char(255)
 );
 
 create table cita(
-id_cit integer(10) primary key,
+id_cit integer(10) auto_increment primary key,
 fecha date,
 hora time,
 id_est integer(10) ,
