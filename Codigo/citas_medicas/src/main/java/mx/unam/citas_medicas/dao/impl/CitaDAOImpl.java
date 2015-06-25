@@ -10,7 +10,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CitaDAOImpl implements CitaDAO{
     private static final Logger log = LoggerFactory.getLogger(UsuarioDAOImpl.class);
+    @Autowired
     private SessionFactory sessionFactory;
     
     public void setSessionFactory(SessionFactory sf){
@@ -26,6 +29,7 @@ public class CitaDAOImpl implements CitaDAO{
     }
     
     @Override
+    @Transactional
      public void save(Cita transientInstance) {
         Session session = sessionFactory.openSession();
         log.debug("saving Cita instance");
@@ -39,6 +43,7 @@ public class CitaDAOImpl implements CitaDAO{
     }
     
     @Override
+    @Transactional
     public void delete(Cita persistentInstance) {
         Session session = sessionFactory.openSession();
         log.debug("deleting Cita instance");
@@ -52,6 +57,7 @@ public class CitaDAOImpl implements CitaDAO{
     }
     
     @Override
+    @Transactional
     public Cita findById( java.lang.Integer id) {
         Session session = sessionFactory.openSession();
         log.debug("getting Cita instance with id: " + id);
@@ -67,6 +73,7 @@ public class CitaDAOImpl implements CitaDAO{
     
     
     @Override
+    @Transactional
     public List findByExample(Cita instance) {
         Session session = sessionFactory.openSession();
         log.debug("finding Cita instance by example");
@@ -84,6 +91,7 @@ public class CitaDAOImpl implements CitaDAO{
     }    
     
     @Override
+    @Transactional
     public List findByProperty(String propertyName, Object value) {
         Session session = sessionFactory.openSession();
         log.debug("finding Cita instance with property: " + propertyName
@@ -102,6 +110,7 @@ public class CitaDAOImpl implements CitaDAO{
 
 
     @Override
+    @Transactional
     public List findAll() {
         Session session = sessionFactory.openSession();
         log.debug("finding all Cita instances");
@@ -116,6 +125,7 @@ public class CitaDAOImpl implements CitaDAO{
     }
 	
     @Override
+    @Transactional
     public Cita merge(Cita detachedInstance) {
         Session session = sessionFactory.openSession();
         log.debug("merging Cita instance");
@@ -131,6 +141,7 @@ public class CitaDAOImpl implements CitaDAO{
     }
 
     @Override
+    @Transactional
     public void attachDirty(Cita instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching dirty Cita instance");
@@ -144,6 +155,7 @@ public class CitaDAOImpl implements CitaDAO{
     }
     
     @Override
+    @Transactional
     public void attachClean(Cita instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching clean Cita instance");

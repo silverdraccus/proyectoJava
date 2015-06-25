@@ -10,7 +10,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AdministradorDAOImpl implements AdministradorDAO{
     private static final Logger log = LoggerFactory.getLogger(AdministradorDAOImpl.class);
+    @Autowired
     private SessionFactory sessionFactory;
     public static final String NOMBRE = "nombre";
 
@@ -27,6 +30,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     }
 
     @Override
+    @Transactional
     public void save(Administrador transientInstance) {
         Session session = sessionFactory.openSession();
         log.debug("saving Administrador instance");
@@ -40,6 +44,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     }
     
     @Override
+    @Transactional
 	public void delete(Administrador persistentInstance) {
         Session session = sessionFactory.openSession();
         log.debug("deleting Administrador instance");
@@ -53,6 +58,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     }
     
     @Override
+    @Transactional
     public Administrador findById( java.lang.String id) {
         Session session = sessionFactory.openSession();
         log.debug("getting Administrador instance with id: " + id);
@@ -68,6 +74,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     
     
     @Override
+    @Transactional
     public List findByExample(Administrador instance) {
         Session session = sessionFactory.openSession();
         log.debug("finding Administrador instance by example");
@@ -85,6 +92,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     }    
     
     @Override
+    @Transactional
     public List findByProperty(String propertyName, Object value) {
         Session session = sessionFactory.openSession();
         log.debug("finding Administrador instance with property: " + propertyName
@@ -109,6 +117,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     }
 	
     @Override
+    @Transactional
     public List findAll() {
         Session session = sessionFactory.openSession();
         log.debug("finding all Administrador instances");
@@ -123,6 +132,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     }
 	
     @Override
+    @Transactional
     public Administrador merge(Administrador detachedInstance) {
         Session session = sessionFactory.openSession();
         log.debug("merging Administrador instance");
@@ -138,6 +148,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     }
 
     @Override
+    @Transactional
     public void attachDirty(Administrador instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching dirty Administrador instance");
@@ -151,6 +162,7 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     }
     
     @Override
+    @Transactional
     public void attachClean(Administrador instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching clean Administrador instance");

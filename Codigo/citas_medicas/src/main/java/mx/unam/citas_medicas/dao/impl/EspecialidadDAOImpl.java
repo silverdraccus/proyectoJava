@@ -30,6 +30,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
 
     
     @Override
+    @Transactional
     public void save(Especialidad transientInstance) {
         Session session = sessionFactory.openSession();
         log.debug("saving Especialidad instance");
@@ -43,6 +44,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     }
     
     @Override
+    @Transactional
     public void delete(Especialidad persistentInstance) {
         Session session = sessionFactory.openSession();
         log.debug("deleting Especialidad instance");
@@ -56,6 +58,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     }
     
     @Override
+    @Transactional
     public Especialidad findById( java.lang.String id) {
         Session session = sessionFactory.openSession();
         log.debug("getting Especialidad instance with id: " + id);
@@ -71,6 +74,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     
     
     @Override
+    @Transactional
     public List findByExample(Especialidad instance) {
         Session session = sessionFactory.openSession();
         log.debug("finding Especialidad instance by example");
@@ -88,6 +92,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     }    
     
     @Override
+    @Transactional
     public List findByProperty(String propertyName, Object value) {
         Session session = sessionFactory.openSession();
         log.debug("finding Especialidad instance with property: " + propertyName
@@ -120,6 +125,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     }
 	
     @Override
+    @Transactional
     public Especialidad merge(Especialidad detachedInstance) {
         Session session = sessionFactory.openSession();
         log.debug("merging Especialidad instance");
@@ -135,6 +141,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     }
 
     @Override
+    @Transactional
     public void attachDirty(Especialidad instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching dirty Especialidad instance");
@@ -148,6 +155,7 @@ public class EspecialidadDAOImpl implements EspecialidadDAO{
     }
     
     @Override
+    @Transactional
     public void attachClean(Especialidad instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching clean Especialidad instance");

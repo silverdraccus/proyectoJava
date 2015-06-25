@@ -10,7 +10,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ConsultorioDAOImpl implements ConsultorioDAO{
     private static final Logger log = LoggerFactory.getLogger(ConsultorioDAO.class);
+    @Autowired
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sf){
@@ -27,6 +30,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
 
     
     @Override
+    @Transactional
     public void save(Consultorio transientInstance) {
         Session session = sessionFactory.openSession();
         log.debug("saving Consultorio instance");
@@ -40,6 +44,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     }
     
     @Override
+    @Transactional
     public void delete(Consultorio persistentInstance) {
         Session session = sessionFactory.openSession();
         log.debug("deleting Consultorio instance");
@@ -53,6 +58,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     }
     
     @Override
+    @Transactional
     public Consultorio findById( java.lang.Integer id) {
         Session session = sessionFactory.openSession();
         log.debug("getting Consultorio instance with id: " + id);
@@ -68,6 +74,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     
     
     @Override
+    @Transactional
     public List findByExample(Consultorio instance) {
         Session session = sessionFactory.openSession();
         log.debug("finding Consultorio instance by example");
@@ -85,6 +92,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     }    
     
     @Override
+    @Transactional
     public List findByProperty(String propertyName, Object value) {
         Session session = sessionFactory.openSession();
         log.debug("finding Consultorio instance with property: " + propertyName
@@ -103,6 +111,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
 
 
     @Override
+    @Transactional
     public List findAll() {
         Session session = sessionFactory.openSession();
             log.debug("finding all Consultorio instances");
@@ -132,6 +141,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     }
 
     @Override
+    @Transactional
     public void attachDirty(Consultorio instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching dirty Consultorio instance");
@@ -145,6 +155,7 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     }
     
     @Override
+    @Transactional
     public void attachClean(Consultorio instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching clean Consultorio instance");

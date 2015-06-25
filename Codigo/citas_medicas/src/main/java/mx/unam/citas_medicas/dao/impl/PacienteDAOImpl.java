@@ -11,7 +11,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -20,7 +22,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PacienteDAOImpl implements PacienteDAO{
     private static final Logger log = LoggerFactory.getLogger(PacienteDAO.class);
-    //property constants
     public static final String NOMBRE = "nombre";
     public static final String CARRERA = "carrera";
     public static final String SEMESTRE_VIGENTE = "semestreVigente";
@@ -29,13 +30,14 @@ public class PacienteDAOImpl implements PacienteDAO{
     public static final String DIR_COLONIA = "dirColonia";
     public static final String TELEFONO = "telefono";
     public static final String CORREO_E = "correoE";
-
+    @Autowired
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sf){
         this.sessionFactory = sf;
     }
     @Override
+    @Transactional
     public void save(Paciente transientInstance) {
         Session session = sessionFactory.openSession();
         log.debug("saving Paciente instance");
@@ -49,6 +51,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     }
     
     @Override
+    @Transactional
     public void delete(Paciente persistentInstance) {
         Session session = sessionFactory.openSession();
         log.debug("deleting Paciente instance");
@@ -62,6 +65,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     }
     
     @Override
+    @Transactional
     public Paciente findById( java.lang.Integer id) {
         Session session = sessionFactory.openSession();
         log.debug("getting Paciente instance with id: " + id);
@@ -77,6 +81,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     
     
     @Override
+    @Transactional
     public List findByExample(Paciente instance) {
         Session session = sessionFactory.openSession();
         log.debug("finding Paciente instance by example");
@@ -94,6 +99,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     }    
     
     @Override
+    @Transactional
     public List findByProperty(String propertyName, Object value) {
         Session session = sessionFactory.openSession();
         log.debug("finding Paciente instance with property: " + propertyName
@@ -152,6 +158,7 @@ public class PacienteDAOImpl implements PacienteDAO{
 
 
     @Override
+    @Transactional
     public List findAll() {
         Session session = sessionFactory.openSession();
         log.debug("finding all Paciente instances");
@@ -166,6 +173,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     }
 	
     @Override
+    @Transactional
     public Paciente merge(Paciente detachedInstance) {
         Session session = sessionFactory.openSession();
         log.debug("merging Paciente instance");
@@ -181,6 +189,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     }
 
     @Override
+    @Transactional
     public void attachDirty(Paciente instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching dirty Paciente instance");
@@ -194,6 +203,7 @@ public class PacienteDAOImpl implements PacienteDAO{
     }
     
     @Override
+    @Transactional
     public void attachClean(Paciente instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching clean Paciente instance");

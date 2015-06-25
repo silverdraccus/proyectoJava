@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.unam.citas_medicas.dao.impl;
 
 import java.util.List;
@@ -15,7 +10,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -24,6 +21,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DoctorDAOImpl implements DoctorDAO{
     private static final Logger log = LoggerFactory.getLogger(DoctorDAO.class);
+    @Autowired
     private SessionFactory sessionFactory;
     //property constants
     public static final String NOMBRE = "nombre";
@@ -33,6 +31,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     }
     
     @Override
+    @Transactional
     public void save(Doctor transientInstance) {
         Session session = sessionFactory.openSession();
         log.debug("saving Doctor instance");
@@ -46,6 +45,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     }
     
     @Override
+    @Transactional
     public void delete(Doctor persistentInstance) {
         Session session = sessionFactory.openSession();
         log.debug("deleting Doctor instance");
@@ -59,11 +59,12 @@ public class DoctorDAOImpl implements DoctorDAO{
     }
     
     @Override
-    public Doctor findById( java.lang.String id) {
+    @Transactional
+    public Doctor findById(String rfc) {
         Session session = sessionFactory.openSession();
-        log.debug("getting Doctor instance with id: " + id);
+        log.debug("getting Doctor instance with id: " + rfc);
         try {
-            Doctor instance = (Doctor) session.get("Doctor", id);
+            Doctor instance = (Doctor) session.get(Doctor.class, rfc);
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
@@ -72,6 +73,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     }
     
     @Override
+    @Transactional
     public List findByExample(Doctor instance) {
         Session session = sessionFactory.openSession();
         log.debug("finding Doctor instance by example");
@@ -89,6 +91,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     }    
     
     @Override
+    @Transactional
     public List findByProperty(String propertyName, Object value) {
         Session session = sessionFactory.openSession();
         log.debug("finding Doctor instance with property: " + propertyName
@@ -112,6 +115,7 @@ public class DoctorDAOImpl implements DoctorDAO{
 	}
 
     @Override
+    @Transactional
     public List findAll() {
         Session session = sessionFactory.openSession();
         log.debug("finding all Doctor instances");
@@ -126,6 +130,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     }
 	
     @Override
+    @Transactional
     public Doctor merge(Doctor detachedInstance) {
         Session session = sessionFactory.openSession();
         log.debug("merging Doctor instance");
@@ -141,6 +146,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     }
 
     @Override
+    @Transactional
     public void attachDirty(Doctor instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching dirty Doctor instance");
@@ -154,6 +160,7 @@ public class DoctorDAOImpl implements DoctorDAO{
     }
     
     @Override
+    @Transactional
     public void attachClean(Doctor instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching clean Doctor instance");

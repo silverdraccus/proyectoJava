@@ -10,7 +10,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TurnoDAOImpl implements TurnoDAO{
     private static final Logger log = LoggerFactory.getLogger(TurnoDAO.class);
+    @Autowired
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sf){
@@ -26,6 +29,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     }
 
     @Override
+    @Transactional
     public void save(Turno transientInstance) {
         Session session = sessionFactory.openSession();
         log.debug("saving Turno instance");
@@ -39,6 +43,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     }
     
     @Override
+    @Transactional
     public void delete(Turno persistentInstance) {
         Session session = sessionFactory.openSession();
         log.debug("deleting Turno instance");
@@ -52,6 +57,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     }
     
     @Override
+    @Transactional
     public Turno findById( java.lang.String id) {
         Session session = sessionFactory.openSession();
         log.debug("getting Turno instance with id: " + id);
@@ -67,6 +73,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     
     
     @Override
+    @Transactional
     public List findByExample(Turno instance) {
         Session session = sessionFactory.openSession();
         log.debug("finding Turno instance by example");
@@ -84,6 +91,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     }    
     
     @Override
+    @Transactional
     public List findByProperty(String propertyName, Object value) {
         Session session = sessionFactory.openSession();
         log.debug("finding Turno instance with property: " + propertyName
@@ -102,6 +110,7 @@ public class TurnoDAOImpl implements TurnoDAO{
 
 
     @Override
+    @Transactional
     public List findAll() {
         Session session = sessionFactory.openSession();
         log.debug("finding all Turno instances");
@@ -116,6 +125,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     }
 	
     @Override
+    @Transactional
     public Turno merge(Turno detachedInstance) {
         Session session = sessionFactory.openSession();
         log.debug("merging Turno instance");
@@ -131,6 +141,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     }
 
     @Override
+    @Transactional
     public void attachDirty(Turno instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching dirty Turno instance");
@@ -144,6 +155,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     }
     
     @Override
+    @Transactional
     public void attachClean(Turno instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching clean Turno instance");

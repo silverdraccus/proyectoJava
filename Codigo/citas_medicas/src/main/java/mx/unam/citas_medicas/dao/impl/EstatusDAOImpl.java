@@ -11,7 +11,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -20,8 +22,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class EstatusDAOImpl implements EstatusDAO{
     private static final Logger log = LoggerFactory.getLogger(EstatusDAO.class);
-    //property constants
     public static final String DESCRIPCION = "descripcion";
+   @Autowired
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sf){
@@ -29,6 +31,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     }
     
     @Override
+    @Transactional
     public void save(Estatus transientInstance) {
         Session session = sessionFactory.openSession();
         log.debug("saving Estatus instance");
@@ -42,6 +45,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     }
     
     @Override
+    @Transactional
     public void delete(Estatus persistentInstance) {
         Session session = sessionFactory.openSession();
         log.debug("deleting Estatus instance");
@@ -55,6 +59,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     }
     
     @Override
+    @Transactional
     public Estatus findById( java.lang.Integer id) {
         Session session = sessionFactory.openSession();
         log.debug("getting Estatus instance with id: " + id);
@@ -69,6 +74,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     }
     
     @Override
+    @Transactional
     public List findByExample(Estatus instance) {
         Session session = sessionFactory.openSession();
         log.debug("finding Estatus instance by example");
@@ -86,6 +92,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     }    
     
     @Override
+    @Transactional
     public List findByProperty(String propertyName, Object value) {
         Session session = sessionFactory.openSession();
         log.debug("finding Estatus instance with property: " + propertyName
@@ -109,6 +116,7 @@ public class EstatusDAOImpl implements EstatusDAO{
 	
 
     @Override
+    @Transactional
 	public List findAll() {
             Session session = sessionFactory.openSession();
             log.debug("finding all Estatus instances");
@@ -123,6 +131,7 @@ public class EstatusDAOImpl implements EstatusDAO{
 	}
 	
     @Override
+    @Transactional
     public Estatus merge(Estatus detachedInstance) {
         Session session = sessionFactory.openSession();
         log.debug("merging Estatus instance");
@@ -138,6 +147,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     }
 
     @Override
+    @Transactional
     public void attachDirty(Estatus instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching dirty Estatus instance");
@@ -151,6 +161,7 @@ public class EstatusDAOImpl implements EstatusDAO{
     }
     
     @Override
+    @Transactional
     public void attachClean(Estatus instance) {
         Session session = sessionFactory.openSession();
         log.debug("attaching clean Estatus instance");

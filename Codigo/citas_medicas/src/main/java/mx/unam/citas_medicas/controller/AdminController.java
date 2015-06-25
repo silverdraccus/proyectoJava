@@ -64,8 +64,10 @@ public class AdminController {
             model.addAttribute("isAdmin", "true");
             if(doc.getRfc()!=null){
                 doc=doctorService.getDoctorById(doc.getRfc());
+                System.out.println("docccc: "+doc);
                 if (action.equalsIgnoreCase("Editar")){
                     model.addAttribute("doc",doc);
+                    
                     return "editarDoctor";
                 }else if(action.equalsIgnoreCase("Borrar")){
                     model.addAttribute("msj","Doctor borrado");
