@@ -7,7 +7,7 @@
     <link href="<c:url value="/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/bower_components/datatables-responsive/css/dataTables.responsive.css" />" rel="stylesheet">
     <body>
-         <jsp:include page="/menu.jsp"></jsp:include> 
+        <jsp:include page="/menu.jsp"></jsp:include> 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -24,11 +24,18 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            <c:if test="${not empty msj}">
+                                <div class="alert alert-danger alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    ${msj}
+                                </div>
+                            </c:if>
                             <div class="dataTable_wrapper">
+                                <c:url var="addAction" value="/actualizaDoctor.jsp" ></c:url>
+                                <form:form action="${addAction}" modelAttribute="doc">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>id_usuario</th>
                                             <th>RFC</th>
                                             <th>Nombre</th>
                                             <th>Especialidad</th>
@@ -37,7 +44,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="doctor" items="${doctores}" varStatus="counter">
+                                        <c:forEach var="d" items="${doctores}" varStatus="counter">
                                             <c:choose>
                                                 <c:when test="${counter.count % 2 == 0}">
                                                     <c:set var="rowStyle" scope="page" value="odd"/>
@@ -47,16 +54,26 @@
                                                 </c:otherwise>
                                             </c:choose>
                                             <tr class="${rowStyle}">
-                                                <td>${doctor.usuario.idUs}</td>
-                                                <td>${doctor.rfc}</td>
-                                                <td>${doctor.nombre}</td>
-                                                <td>${doctor.especialidad.especialidad}</td>
-                                                <td>${doctor.turno.turno}</td>
-                                                <td>${doctor.consultorio.consultorio}</td>
+                                                <td><form:radiobutton path="rfc" value="${d.rfc}"/>${d.rfc}</td>
+                                                <td>${d.nombre}</td>
+                                                <td>${d.especialidad.especialidad}</td>
+                                                <td>${d.turno.turno}</td>
+                                                <td class="center">${d.consultorio.consultorio}</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>
+                                <div class="row">
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-2">
+                                        <input type="submit" name="action" value="Editar" class="btn btn-lg btn-info btn-block"/>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="submit" name="action" value="Borrar" class="btn btn-lg btn-danger btn-block"/>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                                </form:form>
                             </div>
                             <!-- /.table-responsive -->
                         </div>

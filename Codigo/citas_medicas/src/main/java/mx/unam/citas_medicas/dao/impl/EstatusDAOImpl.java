@@ -2,7 +2,6 @@
 package mx.unam.citas_medicas.dao.impl;
 
 import java.util.List;
-import mx.unam.citas_medicas.dao.EspecialidadDAO;
 import mx.unam.citas_medicas.dao.EstatusDAO;
 import mx.unam.citas_medicas.modelo.Estatus;
 import org.hibernate.LockOptions;
@@ -12,11 +11,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Ariadna
  */
+@Repository
 public class EstatusDAOImpl implements EstatusDAO{
     private static final Logger log = LoggerFactory.getLogger(EstatusDAO.class);
     //property constants

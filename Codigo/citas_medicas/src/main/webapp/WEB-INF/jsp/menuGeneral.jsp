@@ -20,6 +20,12 @@
                     <h2>Bienvenid@ <c:out value="${usuarioLogin.nombre}" /></h2>
                     <div class="panel panel-default">
                         <div class="panel-body">
+                            <c:if test="${not empty msj}">
+                                <div class="alert alert-danger alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    ${msj}
+                                </div>
+                            </c:if>
                             <c:if test="${not empty isAdmin}">
                                 admin!
                                 *ABC Pacientes

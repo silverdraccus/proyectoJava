@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.unam.citas_medicas.dao.impl;
 
 import java.util.List;
@@ -15,11 +10,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Ariadna
  */
+@Repository
 public class TurnoDAOImpl implements TurnoDAO{
     private static final Logger log = LoggerFactory.getLogger(TurnoDAO.class);
     private SessionFactory sessionFactory;

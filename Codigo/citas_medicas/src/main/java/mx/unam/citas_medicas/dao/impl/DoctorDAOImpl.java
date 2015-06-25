@@ -15,11 +15,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Ariadna
  */
+@Repository
 public class DoctorDAOImpl implements DoctorDAO{
     private static final Logger log = LoggerFactory.getLogger(DoctorDAO.class);
     private SessionFactory sessionFactory;

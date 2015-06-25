@@ -10,11 +10,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Ariadna
  */
+@Repository
 public class AdministradorDAOImpl implements AdministradorDAO{
     private static final Logger log = LoggerFactory.getLogger(AdministradorDAOImpl.class);
     private SessionFactory sessionFactory;

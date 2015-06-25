@@ -16,20 +16,18 @@
                     </c:if>
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Ingreso</h3>
+                            <h3 class="panel-title">Sistema de Citas M&eacute;dicas</h3>
                         </div>
                         <div class="panel-body">
                             <c:url var="addAction" value="/login.jsp" ></c:url>
                             <form:form action="${addAction}" modelAttribute="usuarioLogin">
-                            <!--form action="LoginController" method="post" role="form"-->
                                 <fieldset>
                                     <div class="form-group">
                                         <form:input cssClass="form-control" path="nombre" />
                                     </div>
                                     <div class="form-group">
-                                        <form:input cssClass="form-control" path="password" />
+                                        <form:password cssClass="form-control" path="password" />
                                     </div>
-                                    <!-- Change this to a button or input when using this as a form -->
                                     <input type="submit" name="submit" value="Login" class="btn btn-lg btn-success btn-block"/>
                                 </fieldset>
                             <!--/form>-->
