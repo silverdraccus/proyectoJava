@@ -41,14 +41,29 @@ public class AdminController {
     //Para listar los doctores
     @RequestMapping(value= "/doctores.jsp",  method=RequestMethod.GET)
     public String getDoctores(@ModelAttribute("usuarioLogin") Usuario u,Model model){
-        List<Doctor> listaDoctors;
         if (u!=null){
+            List<Doctor> listaDoctors;
             model.addAttribute("usuarioLogin", u);
             model.addAttribute("isAdmin", "true");
             listaDoctors = doctorService.listaDoctors();
             model.addAttribute("doctores", listaDoctors);
             model.addAttribute("doc", new Doctor());
             return "listaDoctor";
+        }else{
+            model.addAttribute("usuarioLogin", new Usuario());
+            model.addAttribute("msj","Datos incorrectos");
+            return "index";
+        }
+    }
+    
+    //Para agregar doctor
+    @RequestMapping(value= "/doctor.jsp",  method=RequestMethod.GET)
+    public String getDoctor(@ModelAttribute("usuarioLogin") Usuario u,Model model){
+        if (u!=null){
+            model.addAttribute("usuarioLogin", u);
+            model.addAttribute("isAdmin", "true");
+            model.addAttribute("doc", new Doctor());
+            return "altaMedico";
         }else{
             model.addAttribute("usuarioLogin", new Usuario());
             model.addAttribute("msj","Datos incorrectos");

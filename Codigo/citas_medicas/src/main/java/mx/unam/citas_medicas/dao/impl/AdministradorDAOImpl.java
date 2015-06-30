@@ -32,11 +32,12 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     @Override
     @Transactional
     public void save(Administrador transientInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("saving Administrador instance");
         try {
+            Session session = sessionFactory.openSession();
             session.save(transientInstance);
             log.debug("save successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("save failed", re);
             throw re;
@@ -46,11 +47,12 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     @Override
     @Transactional
 	public void delete(Administrador persistentInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("deleting Administrador instance");
         try {
+            Session session = sessionFactory.openSession();
             session.delete(persistentInstance);
             log.debug("delete successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("delete failed", re);
             throw re;
@@ -60,11 +62,12 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     @Override
     @Transactional
     public Administrador findById( java.lang.String id) {
-        Session session = sessionFactory.openSession();
         log.debug("getting Administrador instance with id: " + id);
         try {
+            Session session = sessionFactory.openSession();
             Administrador instance = (Administrador) session
                     .get("Administrador", id);
+            session.disconnect();
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
@@ -76,14 +79,15 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     @Override
     @Transactional
     public List findByExample(Administrador instance) {
-        Session session = sessionFactory.openSession();
         log.debug("finding Administrador instance by example");
         try {
+            Session session = sessionFactory.openSession();
             List results = session
                     .createCriteria(Administrador.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());
+            session.disconnect();
             return results;
         } catch (RuntimeException re) {
             log.error("find by example failed", re);
@@ -94,15 +98,16 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     @Override
     @Transactional
     public List findByProperty(String propertyName, Object value) {
-        Session session = sessionFactory.openSession();
         log.debug("finding Administrador instance with property: " + propertyName
               + ", value: " + value);
         try {
+            Session session = sessionFactory.openSession();
             String queryString = "from Administrador as model where model." 
                                                           + propertyName + "= ?";
             Query queryObject = session.createQuery(queryString);
                    queryObject.setParameter(0, value);
-                   return queryObject.list();
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
            log.error("find by property name failed", re);
            throw re;
@@ -111,20 +116,19 @@ public class AdministradorDAOImpl implements AdministradorDAO{
 
     @Override
     public List findByNombre(Object nombre) {
-        Session session = sessionFactory.openSession();
-            return findByProperty(NOMBRE, nombre
-            );
+        return findByProperty(NOMBRE, nombre);
     }
 	
     @Override
     @Transactional
     public List findAll() {
-        Session session = sessionFactory.openSession();
         log.debug("finding all Administrador instances");
         try {
-                String queryString = "from Administrador";
-         Query queryObject = session.createQuery(queryString);
-                 return queryObject.list();
+            Session session = sessionFactory.openSession();
+            String queryString = "from Administrador";
+            Query queryObject = session.createQuery(queryString);
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
                 log.error("find all failed", re);
                 throw re;
@@ -134,12 +138,13 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     @Override
     @Transactional
     public Administrador merge(Administrador detachedInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("merging Administrador instance");
         try {
+            Session session = sessionFactory.openSession();
             Administrador result = (Administrador) session
                     .merge(detachedInstance);
             log.debug("merge successful");
+            session.disconnect();
             return result;
         } catch (RuntimeException re) {
             log.error("merge failed", re);
@@ -150,11 +155,12 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     @Override
     @Transactional
     public void attachDirty(Administrador instance) {
-        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Administrador instance");
         try {
+            Session session = sessionFactory.openSession();
             session.saveOrUpdate(instance);
             log.debug("attach successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("attach failed", re);
             throw re;
@@ -164,11 +170,12 @@ public class AdministradorDAOImpl implements AdministradorDAO{
     @Override
     @Transactional
     public void attachClean(Administrador instance) {
-        Session session = sessionFactory.openSession();
         log.debug("attaching clean Administrador instance");
         try {
+            Session session = sessionFactory.openSession();
             session.buildLockRequest(LockOptions.NONE).lock(instance);
             log.debug("attach successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("attach failed", re);
             throw re;

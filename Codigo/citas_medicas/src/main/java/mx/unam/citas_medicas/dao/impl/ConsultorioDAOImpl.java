@@ -32,11 +32,12 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     @Override
     @Transactional
     public void save(Consultorio transientInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("saving Consultorio instance");
         try {
+            Session session = sessionFactory.openSession();
             session.save(transientInstance);
             log.debug("save successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("save failed", re);
             throw re;
@@ -46,11 +47,12 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     @Override
     @Transactional
     public void delete(Consultorio persistentInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("deleting Consultorio instance");
         try {
+            Session session = sessionFactory.openSession();
             session.delete(persistentInstance);
             log.debug("delete successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("delete failed", re);
             throw re;
@@ -60,11 +62,12 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     @Override
     @Transactional
     public Consultorio findById( java.lang.Integer id) {
-        Session session = sessionFactory.openSession();
         log.debug("getting Consultorio instance with id: " + id);
         try {
+            Session session = sessionFactory.openSession();
             Consultorio instance = (Consultorio) session
                     .get("Consultorio", id);
+            session.disconnect();
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
@@ -76,14 +79,15 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     @Override
     @Transactional
     public List findByExample(Consultorio instance) {
-        Session session = sessionFactory.openSession();
         log.debug("finding Consultorio instance by example");
         try {
+            Session session = sessionFactory.openSession();
             List results = session
                     .createCriteria(Consultorio.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());
+            session.disconnect();
             return results;
         } catch (RuntimeException re) {
             log.error("find by example failed", re);
@@ -94,15 +98,16 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     @Override
     @Transactional
     public List findByProperty(String propertyName, Object value) {
-        Session session = sessionFactory.openSession();
         log.debug("finding Consultorio instance with property: " + propertyName
             + ", value: " + value);
         try {
+            Session session = sessionFactory.openSession();
             String queryString = "from Consultorio as model where model." 
                                                            + propertyName + "= ?";
             Query queryObject = session.createQuery(queryString);
                     queryObject.setParameter(0, value);
-                    return queryObject.list();
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
          log.error("find by property name failed", re);
          throw re;
@@ -113,26 +118,28 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     @Override
     @Transactional
     public List findAll() {
-        Session session = sessionFactory.openSession();
-            log.debug("finding all Consultorio instances");
-            try {
-                    String queryString = "from Consultorio";
-             Query queryObject = session.createQuery(queryString);
-                     return queryObject.list();
-            } catch (RuntimeException re) {
-                    log.error("find all failed", re);
-                    throw re;
-            }
+        log.debug("finding all Consultorio instances");
+        try {
+            Session session = sessionFactory.openSession();
+            String queryString = "from Consultorio";
+            Query queryObject = session.createQuery(queryString);
+            session.disconnect();
+            return queryObject.list();
+        } catch (RuntimeException re) {
+            log.error("find all failed", re);
+            throw re;
+        }
     }
 	
     @Override
     public Consultorio merge(Consultorio detachedInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("merging Consultorio instance");
         try {
+            Session session = sessionFactory.openSession();
             Consultorio result = (Consultorio) session
                     .merge(detachedInstance);
             log.debug("merge successful");
+            session.disconnect();
             return result;
         } catch (RuntimeException re) {
             log.error("merge failed", re);
@@ -143,11 +150,12 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     @Override
     @Transactional
     public void attachDirty(Consultorio instance) {
-        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Consultorio instance");
         try {
+            Session session = sessionFactory.openSession();
             session.saveOrUpdate(instance);
             log.debug("attach successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("attach failed", re);
             throw re;
@@ -157,11 +165,12 @@ public class ConsultorioDAOImpl implements ConsultorioDAO{
     @Override
     @Transactional
     public void attachClean(Consultorio instance) {
-        Session session = sessionFactory.openSession();
         log.debug("attaching clean Consultorio instance");
         try {
+            Session session = sessionFactory.openSession();
             session.buildLockRequest(LockOptions.NONE).lock(instance);
             log.debug("attach successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("attach failed", re);
             throw re;

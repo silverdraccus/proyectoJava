@@ -1,9 +1,3 @@
-<%-- 
-    Document   : altaBajaMedico
-    Created on : 11/06/2015, 02:05:26 PM
-    Author     : julio
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -15,7 +9,7 @@
     </head>
     <body>
         <c:url var="addAction" value="/altaMedico.jsp" ></c:url>
-        <form:form action="${addAction}" modelAttribute="doctorForm" method="post">
+        <form:form action="${addAction}" modelAttribute="doc" method="post">
         <fieldset>
                 <form:label path="rfc">RFC</form:label>
                 <form:input path="rfc" />

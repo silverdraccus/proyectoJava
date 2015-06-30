@@ -29,8 +29,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author julio
  */
+/*
 @Controller
-@RequestMapping(value = "/altaMedico.jsp")
+@RequestMapping(value = "/altaMedico2.jsp")
 public class AltaMedicoContoller {
 
     EspecialidadService especialidadService;
@@ -102,6 +103,7 @@ public class AltaMedicoContoller {
          turnoService.getCatalogoTurnos());
          model.addAttribute("consultorios", 
          consultorioService.getCatalogoConsultorios());
-         */
+         * \/
     }
 }
+*/

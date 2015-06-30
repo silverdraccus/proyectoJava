@@ -39,10 +39,11 @@ public class PacienteDAOImpl implements PacienteDAO{
     @Override
     @Transactional
     public void save(Paciente transientInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("saving Paciente instance");
         try {
+            Session session = sessionFactory.openSession();
             session.save(transientInstance);
+            session.disconnect();
             log.debug("save successful");
         } catch (RuntimeException re) {
             log.error("save failed", re);
@@ -53,11 +54,12 @@ public class PacienteDAOImpl implements PacienteDAO{
     @Override
     @Transactional
     public void delete(Paciente persistentInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("deleting Paciente instance");
         try {
+            Session session = sessionFactory.openSession();
             session.delete(persistentInstance);
             log.debug("delete successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("delete failed", re);
             throw re;
@@ -67,11 +69,12 @@ public class PacienteDAOImpl implements PacienteDAO{
     @Override
     @Transactional
     public Paciente findById( java.lang.Integer id) {
-        Session session = sessionFactory.openSession();
         log.debug("getting Paciente instance with id: " + id);
         try {
+            Session session = sessionFactory.openSession();
             Paciente instance = (Paciente) session
                     .get("Paciente", id);
+            session.disconnect();
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
@@ -83,14 +86,15 @@ public class PacienteDAOImpl implements PacienteDAO{
     @Override
     @Transactional
     public List findByExample(Paciente instance) {
-        Session session = sessionFactory.openSession();
         log.debug("finding Paciente instance by example");
         try {
+            Session session = sessionFactory.openSession();
             List results = session
                     .createCriteria(Paciente.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());
+            session.disconnect();
             return results;
         } catch (RuntimeException re) {
             log.error("find by example failed", re);
@@ -100,16 +104,17 @@ public class PacienteDAOImpl implements PacienteDAO{
     
     @Override
     @Transactional
-    public List findByProperty(String propertyName, Object value) {
-        Session session = sessionFactory.openSession();
+    public List findByProperty(String propertyName, Object value) {       
         log.debug("finding Paciente instance with property: " + propertyName
               + ", value: " + value);
         try {
+            Session session = sessionFactory.openSession();
             String queryString = "from Paciente as model where model." 
                                                           + propertyName + "= ?";
             Query queryObject = session.createQuery(queryString);
                    queryObject.setParameter(0, value);
-                   return queryObject.list();
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
            log.error("find by property name failed", re);
            throw re;
@@ -160,12 +165,13 @@ public class PacienteDAOImpl implements PacienteDAO{
     @Override
     @Transactional
     public List findAll() {
-        Session session = sessionFactory.openSession();
         log.debug("finding all Paciente instances");
         try {
-                String queryString = "from Paciente";
-         Query queryObject = session.createQuery(queryString);
-                 return queryObject.list();
+            Session session = sessionFactory.openSession();
+            String queryString = "from Paciente";
+            Query queryObject = session.createQuery(queryString);
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
                 log.error("find all failed", re);
                 throw re;
@@ -175,12 +181,13 @@ public class PacienteDAOImpl implements PacienteDAO{
     @Override
     @Transactional
     public Paciente merge(Paciente detachedInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("merging Paciente instance");
         try {
+            Session session = sessionFactory.openSession();
             Paciente result = (Paciente) session
                     .merge(detachedInstance);
             log.debug("merge successful");
+            session.disconnect();
             return result;
         } catch (RuntimeException re) {
             log.error("merge failed", re);
@@ -191,10 +198,11 @@ public class PacienteDAOImpl implements PacienteDAO{
     @Override
     @Transactional
     public void attachDirty(Paciente instance) {
-        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Paciente instance");
         try {
+            Session session = sessionFactory.openSession();
             session.saveOrUpdate(instance);
+            session.disconnect();
             log.debug("attach successful");
         } catch (RuntimeException re) {
             log.error("attach failed", re);
@@ -205,10 +213,11 @@ public class PacienteDAOImpl implements PacienteDAO{
     @Override
     @Transactional
     public void attachClean(Paciente instance) {
-        Session session = sessionFactory.openSession();
         log.debug("attaching clean Paciente instance");
         try {
+            Session session = sessionFactory.openSession();
             session.buildLockRequest(LockOptions.NONE).lock(instance);
+            session.disconnect();
             log.debug("attach successful");
         } catch (RuntimeException re) {
             log.error("attach failed", re);

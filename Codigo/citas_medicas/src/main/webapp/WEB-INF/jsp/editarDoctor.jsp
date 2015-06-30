@@ -15,7 +15,19 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12"></div>
+                <div class="col-lg-12">
+                    
+                    usname
+                    pass
+                    nombcomp
+                    rfc
+                    espec->combo
+                    turno->combo
+                    consultorio->combo
+                    
+                    
+                    
+                </div>
             </div>
             <jsp:include page="/footer.jsp"></jsp:include>
     </body>

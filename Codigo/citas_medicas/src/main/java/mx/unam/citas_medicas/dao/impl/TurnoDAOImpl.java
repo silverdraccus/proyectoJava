@@ -40,6 +40,7 @@ public class TurnoDAOImpl implements TurnoDAO{
             log.error("save failed", re);
             throw re;
         }
+        session.disconnect();
     }
     
     @Override
@@ -54,16 +55,18 @@ public class TurnoDAOImpl implements TurnoDAO{
             log.error("delete failed", re);
             throw re;
         }
+        session.disconnect();
     }
     
     @Override
     @Transactional
     public Turno findById( java.lang.String id) {
-        Session session = sessionFactory.openSession();
-        log.debug("getting Turno instance with id: " + id);
         try {
+            Session session = sessionFactory.openSession();
+            log.debug("getting Turno instance with id: " + id);
             Turno instance = (Turno) session
                     .get("Turno", id);
+            session.disconnect();
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
@@ -75,14 +78,15 @@ public class TurnoDAOImpl implements TurnoDAO{
     @Override
     @Transactional
     public List findByExample(Turno instance) {
-        Session session = sessionFactory.openSession();
-        log.debug("finding Turno instance by example");
         try {
+            Session session = sessionFactory.openSession();
+            log.debug("finding Turno instance by example");
             List results = session
                     .createCriteria(Turno.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());
+            session.disconnect();
             return results;
         } catch (RuntimeException re) {
             log.error("find by example failed", re);
@@ -93,15 +97,16 @@ public class TurnoDAOImpl implements TurnoDAO{
     @Override
     @Transactional
     public List findByProperty(String propertyName, Object value) {
-        Session session = sessionFactory.openSession();
         log.debug("finding Turno instance with property: " + propertyName
             + ", value: " + value);
         try {
+            Session session = sessionFactory.openSession();          
             String queryString = "from Turno as model where model." 
-                                                          + propertyName + "= ?";
+                                + propertyName + "= ?";
             Query queryObject = session.createQuery(queryString);
                    queryObject.setParameter(0, value);
-                   return queryObject.list();
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
              log.error("find by property name failed", re);
             throw re;
@@ -112,12 +117,13 @@ public class TurnoDAOImpl implements TurnoDAO{
     @Override
     @Transactional
     public List findAll() {
-        Session session = sessionFactory.openSession();
         log.debug("finding all Turno instances");
         try {
-                String queryString = "from Turno";
-         Query queryObject = session.createQuery(queryString);
-                 return queryObject.list();
+            Session session = sessionFactory.openSession();
+            String queryString = "from Turno";
+            Query queryObject = session.createQuery(queryString);
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
                 log.error("find all failed", re);
                 throw re;
@@ -127,12 +133,14 @@ public class TurnoDAOImpl implements TurnoDAO{
     @Override
     @Transactional
     public Turno merge(Turno detachedInstance) {
-        Session session = sessionFactory.openSession();
+        
         log.debug("merging Turno instance");
         try {
+            Session session = sessionFactory.openSession();
             Turno result = (Turno) session
                     .merge(detachedInstance);
             log.debug("merge successful");
+            session.disconnect();
             return result;
         } catch (RuntimeException re) {
             log.error("merge failed", re);
@@ -152,6 +160,7 @@ public class TurnoDAOImpl implements TurnoDAO{
             log.error("attach failed", re);
             throw re;
         }
+        session.disconnect();
     }
     
     @Override
@@ -166,5 +175,6 @@ public class TurnoDAOImpl implements TurnoDAO{
             log.error("attach failed", re);
             throw re;
         }
+        session.disconnect();
     }
 }

@@ -63,13 +63,12 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     
     @Transactional
     @Override
-    public Usuario findById( java.lang.Integer id) {
-        
+    public Usuario findById( java.lang.Integer id) {  
         logger.debug("getting Usuario instance with id: " + id);
         try {
-           Session session = sessionFactory.openSession();
+            Session session = sessionFactory.openSession();
             Usuario instance = (Usuario)session.get("Usuario", id);
-            session.close();
+            session.disconnect();
             return instance;
         } catch (RuntimeException re) {
             logger.error("get failed", re);
@@ -104,11 +103,11 @@ public class UsuarioDAOImpl implements UsuarioDAO{
         
         logger.debug("finding Usuario instance with property: " + propertyName+ ", value: " + value);
         try {
-           Session session = sessionFactory.openSession();
+            Session session = sessionFactory.openSession();
             String queryString = "from Usuario as model where model."+ propertyName + "= ?";
             Query queryObject = session.createQuery(queryString);
             queryObject.setParameter(0, value);
-            session.close();
+            session.disconnect();
             return queryObject.list(); 
         } catch (RuntimeException re) {
          logger.error("find by property name failed", re);
@@ -147,7 +146,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
     public Usuario merge(Usuario detachedInstance) {  
         logger.debug("merging Usuario instance");
         try {
-           Session session = sessionFactory.openSession();
+            Session session = sessionFactory.openSession();
             Usuario result = (Usuario) session.merge(detachedInstance);
             session.disconnect();
             logger.debug("merge successful");

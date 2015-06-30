@@ -9,6 +9,7 @@ import mx.unam.citas_medicas.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -71,6 +72,25 @@ public class LoginController {
     public String getLogout(Model model){
         model.addAttribute("usuarioLogin",new Usuario());
         return "index";
+    }
+    
+    //Para la pag principal
+    @RequestMapping(value= "/menu.jsp",  method=RequestMethod.GET)
+    public String getMenu(@ModelAttribute("usuarioLogin") Usuario u,Model model){
+        if (u!=null){
+            model.addAttribute("usuarioLogin", u);
+            if (isDoctor(u, doctorService)){
+                model.addAttribute("isDoctor", "true");
+            }
+            if(isAdministrador(u, administradorService)){
+                model.addAttribute("isAdmin", "true");
+            } 
+            return "menuGeneral";
+        }else{
+            model.addAttribute("usuarioLogin", new Usuario());
+            model.addAttribute("msj","Datos incorrectos");
+            return "index";
+        }
     }
     
     public boolean isDoctor(Usuario u,DoctorService ds){

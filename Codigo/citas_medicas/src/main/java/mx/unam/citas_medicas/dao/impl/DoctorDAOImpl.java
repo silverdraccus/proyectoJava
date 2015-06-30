@@ -42,6 +42,7 @@ public class DoctorDAOImpl implements DoctorDAO{
             log.error("save failed", re);
             throw re;
         }
+        session.disconnect();
     }
     
     @Override
@@ -56,6 +57,7 @@ public class DoctorDAOImpl implements DoctorDAO{
             log.error("delete failed", re);
             throw re;
         }
+        session.disconnect();
     }
     
     @Override
@@ -65,11 +67,14 @@ public class DoctorDAOImpl implements DoctorDAO{
         log.debug("getting Doctor instance with id: " + rfc);
         try {
             Doctor instance = (Doctor) session.get(Doctor.class, rfc);
+            session.disconnect();
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
+            session.disconnect();
             throw re;
         }
+        
     }
     
     @Override
@@ -83,9 +88,11 @@ public class DoctorDAOImpl implements DoctorDAO{
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());
+            session.disconnect();
             return results;
         } catch (RuntimeException re) {
             log.error("find by example failed", re);
+            session.disconnect();
             throw re;
         }
     }    
@@ -101,16 +108,17 @@ public class DoctorDAOImpl implements DoctorDAO{
                                                           + propertyName + "= ?";
             Query queryObject = session.createQuery(queryString);
                    queryObject.setParameter(0, value);
-                   return queryObject.list();
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
             log.error("find by property name failed", re);
+            session.disconnect();
             throw re;
         }
     }
 
     @Override
 	public List findByNombre(Object nombre) {
-            Session session = sessionFactory.openSession();
             return findByProperty(NOMBRE, nombre);
 	}
 
@@ -120,12 +128,14 @@ public class DoctorDAOImpl implements DoctorDAO{
         Session session = sessionFactory.openSession();
         log.debug("finding all Doctor instances");
         try {
-                String queryString = "from Doctor";
-         Query queryObject = session.createQuery(queryString);
-                 return queryObject.list();
+            String queryString = "from Doctor";
+            Query queryObject = session.createQuery(queryString);
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
-                log.error("find all failed", re);
-                throw re;
+            log.error("find all failed", re);
+            session.disconnect();
+            throw re;
         }
     }
 	
@@ -138,9 +148,11 @@ public class DoctorDAOImpl implements DoctorDAO{
             Doctor result = (Doctor) session
                     .merge(detachedInstance);
             log.debug("merge successful");
+            session.disconnect();
             return result;
         } catch (RuntimeException re) {
             log.error("merge failed", re);
+            session.disconnect();
             throw re;
         }
     }
@@ -157,6 +169,7 @@ public class DoctorDAOImpl implements DoctorDAO{
             log.error("attach failed", re);
             throw re;
         }
+        session.disconnect();
     }
     
     @Override
@@ -171,5 +184,6 @@ public class DoctorDAOImpl implements DoctorDAO{
             log.error("attach failed", re);
             throw re;
         }
+        session.disconnect();
     }
 }

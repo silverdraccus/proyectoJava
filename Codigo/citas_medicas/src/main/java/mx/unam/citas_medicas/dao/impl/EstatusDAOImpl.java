@@ -33,11 +33,12 @@ public class EstatusDAOImpl implements EstatusDAO{
     @Override
     @Transactional
     public void save(Estatus transientInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("saving Estatus instance");
         try {
+            Session session = sessionFactory.openSession();
             session.save(transientInstance);
             log.debug("save successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("save failed", re);
             throw re;
@@ -47,11 +48,12 @@ public class EstatusDAOImpl implements EstatusDAO{
     @Override
     @Transactional
     public void delete(Estatus persistentInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("deleting Estatus instance");
         try {
+            Session session = sessionFactory.openSession();
             session.delete(persistentInstance);
             log.debug("delete successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("delete failed", re);
             throw re;
@@ -61,11 +63,12 @@ public class EstatusDAOImpl implements EstatusDAO{
     @Override
     @Transactional
     public Estatus findById( java.lang.Integer id) {
-        Session session = sessionFactory.openSession();
         log.debug("getting Estatus instance with id: " + id);
         try {
+            Session session = sessionFactory.openSession();
             Estatus instance = (Estatus) session
                     .get("Estatus", id);
+            session.disconnect();
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
@@ -76,14 +79,15 @@ public class EstatusDAOImpl implements EstatusDAO{
     @Override
     @Transactional
     public List findByExample(Estatus instance) {
-        Session session = sessionFactory.openSession();
         log.debug("finding Estatus instance by example");
         try {
+            Session session = sessionFactory.openSession();
             List results = session
                     .createCriteria(Estatus.class)
                     .add(Example.create(instance))
             .list();
             log.debug("find by example successful, result size: " + results.size());
+            session.disconnect();
             return results;
         } catch (RuntimeException re) {
             log.error("find by example failed", re);
@@ -94,51 +98,54 @@ public class EstatusDAOImpl implements EstatusDAO{
     @Override
     @Transactional
     public List findByProperty(String propertyName, Object value) {
-        Session session = sessionFactory.openSession();
         log.debug("finding Estatus instance with property: " + propertyName
             + ", value: " + value);
         try {
-             String queryString = "from Estatus as model where model." 
+            Session session = sessionFactory.openSession();
+            String queryString = "from Estatus as model where model." 
          						+ propertyName + "= ?";
             Query queryObject = session.createQuery(queryString);
-		 queryObject.setParameter(0, value);
-		 return queryObject.list();
+            queryObject.setParameter(0, value);
+            session.disconnect();
+            return queryObject.list();
         } catch (RuntimeException re) {
             log.error("find by property name failed", re);
             throw re;
         }
-	}
+    }
 
     @Override
-	public List findByDescripcion(Object descripcion) {
-            return findByProperty(DESCRIPCION, descripcion);
-	}
+    public List findByDescripcion(Object descripcion) {
+        return findByProperty(DESCRIPCION, descripcion);
+    }
 	
 
     @Override
     @Transactional
-	public List findAll() {
+    public List findAll() {
+        log.debug("finding all Estatus instances");
+        try {
             Session session = sessionFactory.openSession();
-            log.debug("finding all Estatus instances");
-            try {
-                    String queryString = "from Estatus";
-             Query queryObject = session.createQuery(queryString);
-                     return queryObject.list();
-            } catch (RuntimeException re) {
-                    log.error("find all failed", re);
-                    throw re;
-            }
-	}
+            String queryString = "from Estatus";
+            Query queryObject = session.createQuery(queryString);
+            session.disconnect();
+            return queryObject.list();
+        } catch (RuntimeException re) {
+                log.error("find all failed", re);
+                throw re;
+        }
+    }
 	
     @Override
     @Transactional
     public Estatus merge(Estatus detachedInstance) {
-        Session session = sessionFactory.openSession();
         log.debug("merging Estatus instance");
         try {
+            Session session = sessionFactory.openSession();
             Estatus result = (Estatus) session
                     .merge(detachedInstance);
             log.debug("merge successful");
+            session.disconnect();
             return result;
         } catch (RuntimeException re) {
             log.error("merge failed", re);
@@ -149,11 +156,12 @@ public class EstatusDAOImpl implements EstatusDAO{
     @Override
     @Transactional
     public void attachDirty(Estatus instance) {
-        Session session = sessionFactory.openSession();
         log.debug("attaching dirty Estatus instance");
         try {
+            Session session = sessionFactory.openSession();
             session.saveOrUpdate(instance);
             log.debug("attach successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("attach failed", re);
             throw re;
@@ -163,11 +171,12 @@ public class EstatusDAOImpl implements EstatusDAO{
     @Override
     @Transactional
     public void attachClean(Estatus instance) {
-        Session session = sessionFactory.openSession();
         log.debug("attaching clean Estatus instance");
         try {
+            Session session = sessionFactory.openSession();
             session.buildLockRequest(LockOptions.NONE).lock(instance);
             log.debug("attach successful");
+            session.disconnect();
         } catch (RuntimeException re) {
             log.error("attach failed", re);
             throw re;

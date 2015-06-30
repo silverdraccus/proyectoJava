@@ -27,12 +27,12 @@
                                 </div>
                             </c:if>
                             <c:if test="${not empty isAdmin}">
-                                admin!
-                                *ABC Pacientes
-                                *ABC Doctores
-                                <a href="doctores.jsp" >Medicos</a><br/>
-                                <a href="pacientes.jsp" >Pacientes</a><br/>
-                                <a href="logout.jsp">*Cerrar session</a> 
+                                admin!<br/>
+                                <a href="doctor.jsp" >Agregar Doctor</a><br/>
+                                <a href="doctores.jsp" >Ver Medicos</a><br/>
+                                <a href="paciente.jsp" >Agregar Paciente</a><br/>
+                                <a href="pacientes.jsp" >Ver Pacientes</a><br/>
+                                <a href="logout.jsp">Cerrar session</a> 
                             </c:if>
                             <c:if test="${not empty isDoctor}">
                                 doctor!
